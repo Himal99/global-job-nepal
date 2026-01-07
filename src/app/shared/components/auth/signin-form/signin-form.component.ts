@@ -1,11 +1,12 @@
 
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { LabelComponent } from '../../form/label/label.component';
 import { CheckboxComponent } from '../../form/input/checkbox.component';
 import { ButtonComponent } from '../../ui/button/button.component';
 import { InputFieldComponent } from '../../form/input/input-field.component';
-import { RouterModule } from '@angular/router';
+import {Router, RouterModule} from '@angular/router';
 import { FormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-signin-form',
@@ -20,7 +21,11 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './signin-form.component.html',
   styles: ``
 })
-export class SigninFormComponent {
+export class SigninFormComponent implements OnInit{
+
+  constructor(protected router: Router) {
+    localStorage.removeItem('authToken')
+  }
 
   showPassword = false;
   isChecked = false;
@@ -36,5 +41,14 @@ export class SigninFormComponent {
     console.log('Email:', this.email);
     console.log('Password:', this.password);
     console.log('Remember Me:', this.isChecked);
+
+    localStorage.setItem('authToken','test')
+
+    this.router.navigateByUrl('/home')
+
+  }
+
+  ngOnInit(): void {
+
   }
 }

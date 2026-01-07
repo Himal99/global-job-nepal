@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Portal Landing Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #0073b1;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .search-container {
+            padding: 20px;
+            text-align: center;
+            background-color: #f9f9f9;
+        }
+
+        .search-container input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .search-container button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #0073b1;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .search-container button:hover {
+            background-color: #005f8d;
+        }
+
+        .jobs-section {
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .jobs-section h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .jobs-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .job-card {
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-size: 14px;
+        }
+
+        .job-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        .job-card h3 {
+            margin: 0 0 5px 0;
+            font-size: 16px;
+            color: #0073b1;
+        }
+
+        .job-card p {
+            margin: 2px 0;
+            color: #555;
+        }
+
+        .hot-job {
+            border-left: 4px solid #ff4d4f;
+            background-color: #fff0f0;
+        }
+
+        @media screen and (max-width: 1024px) {
+            .jobs-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .jobs-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .jobs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .search-container input[type="text"] {
+                width: 70%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+
+<!-- Search -->
+
+<!-- Hot Jobs -->
+<div class="jobs-section pt-5">
+    <h2 class="pt-5">🔥 Hot Jobs</h2>
+    <div class="jobs-grid">
+        <div class="job-card hot-job">
+            <h3>Frontend Developer</h3>
+            <p>Tech Corp</p>
+            <p>Posted: 2026-01-05</p>
+        </div>
+        <div class="job-card hot-job">
+            <h3>Java Backend Engineer</h3>
+            <p>Global IME Bank</p>
+            <p>Posted: 2026-01-04</p>
+        </div>
+        <div class="job-card hot-job">
+            <h3>UI/UX Designer</h3>
+            <p>Creative Studio</p>
+            <p>Posted: 2026-01-03</p>
+        </div>
+        <div class="job-card hot-job">
+            <h3>Data Analyst</h3>
+            <p>Analytics Co.</p>
+            <p>Posted: 2026-01-02</p>
+        </div>
+    </div>
+</div>
+
+<!-- All Jobs -->
+<div class="jobs-section">
+    <h2>All Jobs</h2>
+    <div id="jobsList" class="jobs-grid">
+        <div class="job-card">
+            <h3>Software Engineer</h3>
+            <p>SB Solutions</p>
+            <p>Posted: 2026-01-05</p>
+        </div>
+        <div class="job-card">
+            <h3>Fullstack Developer</h3>
+            <p>Fast Loan Pvt Ltd</p>
+            <p>Posted: 2026-01-04</p>
+        </div>
+        <div class="job-card">
+            <h3>Mobile App Developer</h3>
+            <p>Tech Startup</p>
+            <p>Posted: 2026-01-03</p>
+        </div>
+        <div class="job-card">
+            <h3>Data Scientist</h3>
+            <p>Global IME Bank</p>
+            <p>Posted: 2026-01-02</p>
+        </div>
+        <div class="job-card">
+            <h3>System Analyst</h3>
+            <p>IT Solutions</p>
+            <p>Posted: 2026-01-01</p>
+        </div>
+        <div class="job-card">
+            <h3>DevOps Engineer</h3>
+            <p>Cloud Services</p>
+            <p>Posted: 2025-12-31</p>
+        </div>
+        <div class="job-card">
+            <h3>QA Tester</h3>
+            <p>SoftTech</p>
+            <p>Posted: 2025-12-30</p>
+        </div>
+        <div class="job-card">
+            <h3>Project Manager</h3>
+            <p>Business Solutions</p>
+            <p>Posted: 2025-12-29</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    function searchJobs() {
+        const input = document.getElementById('searchInput').value.toLowerCase();
+        const jobs = document.querySelectorAll('#jobsList .job-card');
+        jobs.forEach(job => {
+            const title = job.querySelector('h3').innerText.toLowerCase();
+            const company = job.querySelector('p').innerText.toLowerCase();
+            if(title.includes(input) || company.includes(input)) {
+                job.style.display = 'block';
+            } else {
+                job.style.display = 'none';
+            }
+        });
+    }
+</script>
+
+</body>
+</html>
