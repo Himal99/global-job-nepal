@@ -1,10 +1,11 @@
 
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { LabelComponent } from '../../form/label/label.component';
 import { CheckboxComponent } from '../../form/input/checkbox.component';
 import { InputFieldComponent } from '../../form/input/input-field.component';
-import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import {Router, RouterModule} from '@angular/router';
+import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {AuthService} from "../auth.service";
 
 
 @Component({
@@ -14,12 +15,25 @@ import { FormsModule } from '@angular/forms';
     CheckboxComponent,
     InputFieldComponent,
     RouterModule,
-    FormsModule
-],
+    FormsModule,
+    ReactiveFormsModule
+  ],
   templateUrl: './signup-form.component.html',
   styles: ``
 })
-export class SignupFormComponent {
+export class SignupFormComponent implements OnInit{
+
+
+  constructor(protected formBuilder: FormBuilder,
+              protected service: AuthService,
+              protected router: Router) {
+  }
+
+  ngOnInit(): void {
+        this.buildForm();
+    }
+
+  form! : FormGroup ;
 
   showPassword = false;
   isChecked = false;
@@ -33,11 +47,35 @@ export class SignupFormComponent {
     this.showPassword = !this.showPassword;
   }
 
+  private createReqBody(): any{
+      return {
+          "email": this.form.get('email')?.value,
+          "firstName": this.form.get('fName')?.value,
+          "lastName": this.form.get('lName')?.value,
+          "password":this.form.get('password')?.value,
+          "role": ["USER", "ADMIN"],
+          "phoneNumber": "+9779812345678",
+          "serverCompressor": true
+      }
+
+  }
+
   onSignIn() {
-    console.log('First Name:', this.fname);
-    console.log('Last Name:', this.lname);
-    console.log('Email:', this.email);
-    console.log('Password:', this.password);
-    console.log('Remember Me:', this.isChecked);
+    console.log(this.form.value)
+    this.service.registerUser(this.createReqBody())
+        .subscribe((rs)=>{
+          console.log(rs)
+            this.router.navigateByUrl('/signin')
+        })
+  }
+
+  buildForm(): void{
+    this.form = this.formBuilder
+        .group({
+          fName: undefined,
+          lName: undefined,
+          email: undefined,
+          password: undefined
+        })
   }
 }
