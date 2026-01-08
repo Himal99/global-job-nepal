@@ -6,7 +6,7 @@ export class ApiUtils {
 
     public static getRequest(api: string) {
         const fullApi = `${ApiConfig.URL}/${api}`;
-        const at = localStorage.getItem('at');
+        const at = localStorage.getItem('authToken');
 
         return {
             url: fullApi,
@@ -19,7 +19,7 @@ export class ApiUtils {
 
     public static getRequestWithFileSupport(api: string) {
         const fullApi = `${ApiConfig.URL}/${api}`;
-        const at = localStorage.getItem('at');
+        const at = localStorage.getItem('authToken');
         return {
             url: fullApi,
             header: new HttpHeaders({
