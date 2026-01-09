@@ -2,220 +2,279 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <title>Job Vacancies</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job Portal Landing Page</title>
+
     <style>
         body {
-            font-family: Arial, sans-serif;
             margin: 0;
-            background-color: #f4f4f4;
+            font-family: "Inter", system-ui, -apple-system, sans-serif;
+            background: #F9FAFB;
+            color: #1f2937;
         }
 
-        header {
-            background-color: #0073b1;
-            color: white;
-            padding: 20px;
-            text-align: center;
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 16px;
         }
 
-        header h1 {
-            margin: 0;
+        h1 {
             font-size: 28px;
-        }
-
-        .search-container {
-            padding: 20px;
-            text-align: center;
-            background-color: #f9f9f9;
-        }
-
-        .search-container input[type="text"] {
-            width: 300px;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        .search-container button {
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #0073b1;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .search-container button:hover {
-            background-color: #005f8d;
-        }
-
-        .jobs-section {
-            padding: 20px;
-            max-width: 1200px;
-            margin: auto;
-        }
-
-        .jobs-section h2 {
             margin-bottom: 20px;
-            color: #333;
+            font-weight: 600;
         }
 
-        .jobs-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
+        /* Search Bar */
+        .search-box {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
         }
 
-        .job-card {
-            background-color: white;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
+        .search-box input,
+        .search-box select {
+            padding: 12px 14px;
+            border-radius: 10px;
+            border: 1px solid #e5e7eb;
             font-size: 14px;
+            outline: none;
+            flex: 1;
+        }
+
+        .search-box input:focus,
+        .search-box select:focus {
+            border-color: #2563eb;
+        }
+
+        /* Job Card */
+        .job-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
         .job-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            transform: translateY(-3px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
         }
 
-        .job-card h3 {
-            margin: 0 0 5px 0;
-            font-size: 16px;
-            color: #0073b1;
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            gap: 10px;
         }
 
-        .job-card p {
-            margin: 2px 0;
-            color: #555;
+        .job-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0;
         }
 
-        .hot-job {
-            border-left: 4px solid #ff4d4f;
-            background-color: #fff0f0;
+        .badge-new {
+            background: #dcfce7;
+            color: #166534;
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-weight: 500;
         }
 
-        @media screen and (max-width: 1024px) {
-            .jobs-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
+        .company {
+            font-size: 14px;
+            color: #6b7280;
+            margin-top: 6px;
         }
 
-        @media screen and (max-width: 768px) {
-            .jobs-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+        .job-info {
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap;
+            font-size: 13px;
+            color: #4b5563;
+            margin: 12px 0;
         }
 
-        @media screen and (max-width: 480px) {
-            .jobs-grid {
-                grid-template-columns: 1fr;
-            }
+        .job-info span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
 
-            .search-container input[type="text"] {
-                width: 70%;
+        .description {
+            font-size: 14px;
+            color: #374151;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .job-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .date {
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .apply-btn {
+            background: #2563eb;
+            color: white;
+            padding: 10px 16px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background 0.2s ease;
+
+        }
+
+        .apply-btn:hover {
+            background: #1e40af;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 22px;
             }
         }
     </style>
 </head>
 <body>
 
-<!-- Header -->
+<div class="">
+    <h1>Latest Job Vacancies</h1>
 
-<!-- Search -->
+    <!-- Search & Filter -->
+    <div class="advanced-search">
 
-<!-- Hot Jobs -->
-<div class="jobs-section pt-5">
-    <h2 class="pt-5">🔥 Hot Jobs</h2>
-    <div class="jobs-grid">
-        <div class="job-card hot-job">
-            <h3>Frontend Developer</h3>
-            <p>Tech Corp</p>
-            <p>Posted: 2026-01-05</p>
+        <input
+                placeholder="Keyword (title, skill, company)"
+                [(ngModel)]="filters.keyword"
+                (input)="onFilterChange()">
+
+        <input
+                placeholder="Location"
+                [(ngModel)]="filters.location"
+                (input)="onFilterChange()">
+
+        <select
+                [(ngModel)]="filters.jobType"
+                (change)="onFilterChange()">
+            <option value="">All Job Types</option>
+            <option value="FULL_TIME">Full Time</option>
+            <option value="PART_TIME">Part Time</option>
+            <option value="REMOTE">Remote</option>
+        </select>
+
+        <div class="salary">
+            <input
+                    type="number"
+                    placeholder="Min Salary"
+                    [(ngModel)]="filters.minSalary"
+                    (input)="onFilterChange()">
+
+            <input
+                    type="number"
+                    placeholder="Max Salary"
+                    [(ngModel)]="filters.maxSalary"
+                    (input)="onFilterChange()">
         </div>
-        <div class="job-card hot-job">
-            <h3>Java Backend Engineer</h3>
-            <p>Global IME Bank</p>
-            <p>Posted: 2026-01-04</p>
-        </div>
-        <div class="job-card hot-job">
-            <h3>UI/UX Designer</h3>
-            <p>Creative Studio</p>
-            <p>Posted: 2026-01-03</p>
-        </div>
-        <div class="job-card hot-job">
-            <h3>Data Analyst</h3>
-            <p>Analytics Co.</p>
-            <p>Posted: 2026-01-02</p>
-        </div>
+
+        <label class="checkbox">
+            <input
+                    type="checkbox"
+                    [(ngModel)]="filters.isNew"
+                    (change)="onFilterChange()">
+            New Jobs Only
+        </label>
+
+        <button (click)="resetFilters()">
+            Reset
+        </button>
+
     </div>
+
+
+    <!-- Job Card -->
+    <div infiniteScroll
+         [infiniteScrollDistance]="2"
+         [infiniteScrollThrottle]="300"
+         (scrolled)="onScroll()">
+         <!-- Spinner -->
+        <p *ngIf="spin" class="loading">Loading jobs...</p>
+
+        <!-- Job Card -->
+        <div
+                class="job-card"
+                *ngFor="let job of jobs">
+
+            <div class="job-header">
+                <div>
+                    <h3 class="job-title">
+                        {{ job.jobTitle }}
+                    </h3>
+
+                    <p class="company">
+                        {{ job.companyName || 'Company: Not Disclosed' }}
+                    </p>
+                </div>
+
+                <span *ngIf="job.new" class="badge-new">
+        NEW
+      </span>
+            </div>
+
+            <div class="job-info">
+                <span>📍 {{ job.location }}</span>
+                <span>👥 Vacancy: {{ job.vacancy }}</span>
+                <span>👁️ Views: {{ job.views }}</span>
+            </div>
+
+            <p class="description">
+                {{ job.jobDescription }}
+            </p>
+
+            <div class="job-footer">
+      <span class="date">
+        Posted on:
+          {{ job.createdAt | date:'mediumDate' }}
+      </span>
+
+                <a
+                        class="apply-btn cursor"
+                        (click)="detail()"
+                        target="_blank">
+                    View Detail
+                </a>
+            </div>
+
+        </div>
+        <div *ngIf="spin" class="loading-more">
+            Loading more jobs...
+        </div>
+        <!-- No Data -->
+        <p *ngIf="!spin && jobs?.length === 0" class="no-data">
+            No jobs found
+        </p>
+    </div>
+
+
 </div>
 
-<!-- All Jobs -->
-<div class="jobs-section">
-    <h2>All Jobs</h2>
-    <div id="jobsList" class="jobs-grid">
-        <div class="job-card">
-            <h3>Software Engineer</h3>
-            <p>SB Solutions</p>
-            <p>Posted: 2026-01-05</p>
-        </div>
-        <div class="job-card">
-            <h3>Fullstack Developer</h3>
-            <p>Fast Loan Pvt Ltd</p>
-            <p>Posted: 2026-01-04</p>
-        </div>
-        <div class="job-card">
-            <h3>Mobile App Developer</h3>
-            <p>Tech Startup</p>
-            <p>Posted: 2026-01-03</p>
-        </div>
-        <div class="job-card">
-            <h3>Data Scientist</h3>
-            <p>Global IME Bank</p>
-            <p>Posted: 2026-01-02</p>
-        </div>
-        <div class="job-card">
-            <h3>System Analyst</h3>
-            <p>IT Solutions</p>
-            <p>Posted: 2026-01-01</p>
-        </div>
-        <div class="job-card">
-            <h3>DevOps Engineer</h3>
-            <p>Cloud Services</p>
-            <p>Posted: 2025-12-31</p>
-        </div>
-        <div class="job-card">
-            <h3>QA Tester</h3>
-            <p>SoftTech</p>
-            <p>Posted: 2025-12-30</p>
-        </div>
-        <div class="job-card">
-            <h3>Project Manager</h3>
-            <p>Business Solutions</p>
-            <p>Posted: 2025-12-29</p>
-        </div>
-    </div>
-</div>
 
-<script>
-    function searchJobs() {
-        const input = document.getElementById('searchInput').value.toLowerCase();
-        const jobs = document.querySelectorAll('#jobsList .job-card');
-        jobs.forEach(job => {
-            const title = job.querySelector('h3').innerText.toLowerCase();
-            const company = job.querySelector('p').innerText.toLowerCase();
-            if(title.includes(input) || company.includes(input)) {
-                job.style.display = 'block';
-            } else {
-                job.style.display = 'none';
-            }
-        });
-    }
-</script>
 
 </body>
 </html>
+<app-loader [show]="spin"></app-loader>
+
+

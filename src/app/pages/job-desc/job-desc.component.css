@@ -1,0 +1,198 @@
+body {
+    margin: 0;
+    font-family: "Inter", sans-serif;
+    background: #F9FAFB;
+    color: #1f2937;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 16px;
+}
+
+.back-btn {
+    background: #e5e7eb;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.company-banner {
+    width: 100%;
+    height: 180px;
+    border-radius: 16px;
+    background-image: url('https://images.unsplash.com/photo-1559526324-593bc073d938?auto=format&fit=crop&w=1200&q=80');
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 20px;
+}
+
+.job-main {
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    margin-bottom: 40px;
+}
+
+.job-header h1 {
+    font-size: 26px;
+    margin: 0;
+}
+
+.company-name {
+    font-size: 14px;
+    color: #6b7280;
+    margin-top: 6px;
+}
+
+.badge-new {
+    background: #dcfce7;
+    color: #166534;
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-weight: 500;
+    margin-top: 8px;
+    display: inline-block;
+}
+
+.salary-badge {
+    display: inline-block;
+    background: #e0f2fe;
+    color: #0369a1;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 14px;
+    margin-top: 8px;
+}
+
+.job-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 13px;
+    color: #4b5563;
+    margin: 16px 0;
+}
+
+/* Buttons container */
+.job-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.job-actions a, .job-actions button {
+    display: inline-block;
+    background: #2563eb;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.job-actions a:hover, .job-actions button:hover {
+    background: #1e40af;
+}
+
+/* Tabs */
+.tabs {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Each tab group */
+.tab input[type="radio"] {
+    display: none;
+}
+
+.tab label {
+    padding: 10px 16px;
+    background: #f3f4f6;
+    border-radius: 12px 12px 0 0;
+    cursor: pointer;
+    font-weight: 500;
+    display: block;
+}
+
+.tab label:hover {
+    background: #e5e7eb;
+}
+
+.tab-content {
+    display: none;
+    padding: 16px;
+    background: #fff;
+    border-radius: 0 16px 16px 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.tab input[type="radio"]:checked + label + .tab-content {
+    display: block;
+}
+
+/* Company info styling */
+.company-info p, .company-info a {
+    font-size: 14px;
+    margin: 4px 0;
+}
+
+.company-info a {
+    color: #2563eb;
+    text-decoration: none;
+}
+
+.company-info a:hover {
+    text-decoration: underline;
+}
+
+/* Similar jobs styling */
+.similar-job a {
+    display: block;
+    font-size: 14px;
+    color: #2563eb;
+    text-decoration: none;
+    margin-bottom: 4px;
+}
+
+.similar-job a:hover {
+    text-decoration: underline;
+}
+
+.similar-job p {
+    font-size: 12px;
+    color: #6b7280;
+    margin: 0 0 8px 0;
+}
+
+.job-map {
+    border-radius: 12px;
+    width: 100%;
+    height: 200px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    margin-top: 10px;
+}
+
+@media (max-width: 600px) {
+    .tab label {
+        font-size: 12px;
+        padding: 8px 12px;
+    }
+
+    .job-actions {
+        flex-direction: column;
+    }
+}

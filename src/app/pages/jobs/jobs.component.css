@@ -1,0 +1,72 @@
+.advanced-search {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    background: #fff;
+    padding: 16px;
+    border-radius: 14px;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    align-items: center;
+}
+
+/* Standard inputs & selects */
+.advanced-search input,
+.advanced-search select {
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+    font-size: 14px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Salary range container */
+.salary {
+    display: flex;
+    gap: 8px;
+    grid-column: span 2; /* Take full width in grid */
+    flex-wrap: wrap;      /* Stack on smaller screens */
+}
+
+.salary input {
+    flex: 1;              /* Equal width for min/max */
+    min-width: 80px;      /* Prevent too small inputs */
+}
+
+/* Checkbox container */
+.checkbox {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    justify-self: start;
+    white-space: nowrap; /* Prevent wrapping */
+}
+
+/* Reset button */
+.advanced-search button {
+    background: #e5e7eb;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    justify-self: start;
+}
+
+/* Responsive tweak */
+@media (max-width: 600px) {
+    .salary {
+        grid-column: span 1;
+        flex-direction: column;
+    }
+
+    .loading-more {
+        text-align: center;
+        padding: 16px;
+        color: #2563eb;
+        font-weight: 500;
+        font-size: 14px;
+    }
+
+}

@@ -74,7 +74,7 @@
 </head>
 <body>
 
-<div class="container pt-5">
+<div class="container ">
 
     <!-- LEFT COLUMN -->
     <div>
@@ -83,7 +83,7 @@
         <div class="card header-card">
             <div class="header-card-inner">
                 <div class="header-text">
-                    <h1>Himal Rai</h1>
+                    <h1 class="professional-title">{{userName}}</h1>
                     <p>Senior Software Engineer | Digital Loan Systems</p>
                     <p>Kathmandu, Nepal · FinTech & Banking</p>
                     <div class="actions">
@@ -120,7 +120,7 @@
         <!-- ABOUT -->
         <div class="card" style="margin-top:20px;">
             <div style="display:flex; justify-content: space-between; align-items: center; margin-bottom:12px;">
-                <div class="section-title">About</div>
+                <h6 style="font-family: sans-serif;font-weight: inherit">About</h6>
 
                 <!-- Pencil Icon for Edit -->
                 <button style="background:none; border:none; cursor:pointer;">
@@ -241,9 +241,9 @@
     <!-- RIGHT COLUMN -->
     <div>
         <div class="card">
-            <div class="section-title">Profile Info</div>
+            <div class="section-title professional-title">Profile Info</div>
             <ul>
-                <li><strong>Email:</strong> himal.rai@email.com</li>
+                <li><strong>Email:</strong> {{email}}</li>
                 <li><strong>Phone:</strong> +977-98XXXXXXXX</li>
                 <li><strong>Experience:</strong> 6+ Years</li>
             </ul>
@@ -285,7 +285,7 @@
         </div>
     </div>
 </div>
-
+<app-loader [show]="false"></app-loader>
 <footer>
     © 2026 Professional Network · LinkedIn-inspired UI
 </footer>

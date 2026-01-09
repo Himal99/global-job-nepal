@@ -16,6 +16,7 @@ import {
 import {AuthService} from "../auth.service";
 import {AlertComponent} from "../../ui/alert/alert.component";
 import {NgClass, NgIf} from "@angular/common";
+import {LoaderComponent} from "../../../../utils/loader/loader.component";
 
 
 @Component({
@@ -30,7 +31,8 @@ import {NgClass, NgIf} from "@angular/common";
         ReactiveFormsModule,
         AlertComponent,
         NgIf,
-        NgClass
+        NgClass,
+        LoaderComponent
     ],
     templateUrl: './signin-form.component.html',
     styles: ``
@@ -51,6 +53,7 @@ export class SigninFormComponent implements OnInit {
 
     showError = false;
     error = '';
+    spin=false;
 
     public get email() {
         return this.form.get('email');
@@ -70,13 +73,17 @@ export class SigninFormComponent implements OnInit {
             this.form.markAllAsTouched();
             return
         }
-
+        this.spin=true;
         this.service.login(this.form.value)
             .subscribe((rs) => {
                 localStorage.setItem('authToken', rs?.data?.token)
-
+                localStorage.setItem('email', rs?.data?.email)
+                localStorage.setItem('userName', rs?.data?.userName)
+                localStorage.setItem('userType', rs?.data?.userType)
+                this.spin=false;
                 this.router.navigateByUrl('/home')
             }, err => {
+                this.spin=false;
                 console.log(err)
                 this.error = err?.error?.message;
                 this.showError = true;

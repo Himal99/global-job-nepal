@@ -21,6 +21,7 @@ import { CalenderComponent } from './pages/calender/calender.component';
 import {JobsComponent} from "./pages/jobs/jobs.component";
 import {authGuard} from "./guards/auth.guard";
 import {logoutGuard} from "./guards/logout.guard";
+import {JobDescComponent} from "./pages/job-desc/job-desc.component";
 
 export const routes: Routes = [
   {
@@ -32,21 +33,28 @@ export const routes: Routes = [
        redirectTo:'/signin',
         pathMatch: 'full',
         title:
-            'Angular Ecommerce Dashboard | TailAdmin - Angular Admin Dashboard Template',
+            'Udaan | Signin',
       },
       {
         path: 'home',
         component: EcommerceComponent,
         pathMatch: 'full',
         title:
-          'Angular Ecommerce Dashboard | TailAdmin - Angular Admin Dashboard Template',
+          'Udaan | Dashboard',
         canActivate:[authGuard]
       },
       {
         path: 'jobs',
         component: JobsComponent,
         title:
-            'Jobs',
+            'Udaan | Jobs',
+        canActivate:[authGuard]
+      },
+      {
+        path: 'jobs-desc',
+        component: JobDescComponent,
+        title:
+            'Udaan | Jobs Description',
         canActivate:[authGuard]
       },
       {
@@ -58,7 +66,7 @@ export const routes: Routes = [
       {
         path:'profile',
         component:ProfileComponent,
-        title:'Angular Profile Dashboard | TailAdmin - Angular Admin Dashboard Template',
+        title:'Udaan | User Profile',
         canActivate:[authGuard]
       },
       {
