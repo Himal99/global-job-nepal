@@ -3,6 +3,8 @@ import { DropdownComponent } from '../../ui/dropdown/dropdown.component';
 import { CommonModule } from '@angular/common';
 import {Router, RouterModule} from '@angular/router';
 import { DropdownItemTwoComponent } from '../../ui/dropdown/dropdown-item/dropdown-item.component-two';
+import {UserDetailService} from "../../../../pages/user-detail/user-detail.service";
+
 
 @Component({
   selector: 'app-user-dropdown',
@@ -14,13 +16,20 @@ export class UserDropdownComponent implements OnInit{
     userName: string | null ='';
     userType: string | null = '';
     email: string | null ='';
-  constructor(protected router: Router) {
+    detail: any;
+  constructor(protected router: Router, protected service: UserDetailService) {
   }
 
   ngOnInit(): void {
        this.userName = localStorage.getItem('userName')
        this.userType = localStorage.getItem('userType')
        this.email = localStorage.getItem('email')
+
+    this.service.getByEmail(this.email)
+        .subscribe(rs => {
+          console.log(rs)
+          this.detail = rs?.data
+        })
     }
 
   toggleDropdown() {

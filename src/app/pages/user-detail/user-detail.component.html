@@ -1,0 +1,82 @@
+<div class="user-form">
+    <h2>User Profile</h2>
+
+    <form [formGroup]="userForm" (ngSubmit)="submit()">
+
+        <!-- BASIC INFO -->
+        <div class="grid">
+
+            <input formControlName="firstName" placeholder="First Name">
+            <input formControlName="lastName" placeholder="Last Name">
+
+            <div>
+                <input formControlName="phone" placeholder="Phone Number">
+                <small *ngIf="userForm.get('phone')?.touched && userForm.get('phone')?.invalid"
+                       class="error">
+                    Enter valid 10-digit phone
+                </small>
+            </div>
+
+            <input formControlName="education" placeholder="Education">
+            <input formControlName="skills" placeholder="Skills (comma separated)">
+            <input formControlName="profilePicture" placeholder="Profile Picture URL">
+            <input formControlName="resumeLinks" placeholder="Resume Link">
+            <input formControlName="socialMediaLinks" placeholder="Social Media Links">
+        </div>
+
+        <br>
+        <textarea class="pt-3" formControlName="about" placeholder="About You"></textarea>
+
+        <!-- ADDRESS -->
+        <h3>Address</h3>
+        <div formGroupName="address" class="grid">
+            <input formControlName="country" placeholder="Country">
+            <input formControlName="state" placeholder="State">
+            <input formControlName="city" placeholder="City">
+            <input formControlName="street" placeholder="Street">
+            <input formControlName="zip" placeholder="ZIP Code">
+        </div>
+
+        <!-- EXPERIENCE -->
+        <h3>Experience</h3>
+        <div formArrayName="experience">
+            <div class="card" *ngFor="let exp of experience.controls; let i=index"
+                 [formGroupName]="i">
+                <input formControlName="company" placeholder="Company">
+                <input formControlName="position" placeholder="Position">
+                <textarea formControlName="projects" placeholder="Projects"></textarea>
+                <button type="button" class="danger" (click)="removeExperience(i)">
+                    Remove
+                </button>
+            </div>
+        </div>
+
+        <button type="button" (click)="addExperience()">+ Add Experience</button>
+
+        <!-- PROJECTS -->
+        <h3>Projects</h3>
+        <div formArrayName="projects">
+            <div class="card" *ngFor="let p of projects.controls; let i=index"
+                 [formGroupName]="i">
+                <input formControlName="company" placeholder="Company">
+                <br>
+                <input formControlName="position" placeholder="Position">
+                <br>
+                <input formControlName="projectName" placeholder="Project Name">
+                <br>
+                <textarea formControlName="projectDescription" placeholder="Description"></textarea>
+                <button type="button" class="danger" (click)="removeProject(i)">
+                    Remove
+                </button>
+            </div>
+        </div>
+
+        <button type="button" (click)="addProject()">+ Add Project</button>
+
+        <button class="submit-btn" type="submit">
+            {{ isEditMode ? 'Update Profile' : 'Save Profile' }}
+        </button>
+
+    </form>
+</div>
+<app-loader [show]="spin"></app-loader>

@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { EcommerceComponent } from './pages/dashboard/ecommerce/ecommerce.component';
+import { UserDashboard } from './pages/dashboard/user-dashboard/user-dashboard';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { FormElementsComponent } from './pages/forms/form-elements/form-elements.component';
 import { BasicTablesComponent } from './pages/tables/basic-tables/basic-tables.component';
@@ -26,6 +26,7 @@ import {AiComponent} from "./pages/ai/ai.component";
 import {PrepareLoksewaComponent} from "./loksewa/prepare-loksewa/prepare-loksewa.component";
 import {FaqComponent} from "./pages/faq/faq.component";
 import {LoksewaNewsComponent} from "./loksewa/loksewa-news/loksewa-news.component";
+import {UserDetailComponent} from "./pages/user-detail/user-detail.component";
 
 export const routes: Routes = [
   {
@@ -41,7 +42,7 @@ export const routes: Routes = [
       },
       {
         path: 'home',
-        component: EcommerceComponent,
+        component: UserDashboard,
         pathMatch: 'full',
         title:
           'Udaan | Dashboard',
@@ -160,6 +161,11 @@ export const routes: Routes = [
         path:'loksewa-notice',
         component:LoksewaNewsComponent,
         title:'Udaan | Loksewa Notice'
+      },
+      {
+        path:'profile-detail/:id',
+        component:UserDetailComponent,
+        title:'Udaan | User Profile'
       },
     ]
   },

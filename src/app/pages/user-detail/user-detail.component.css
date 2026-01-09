@@ -1,0 +1,81 @@
+.user-form {
+    max-width: 100%;
+    margin: 40px auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 15px 40px rgba(0,0,0,.08);
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+h3 {
+    margin: 30px 0 10px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid #d1d5db;
+    font-size: 14px;
+}
+
+textarea {
+    min-height: 80px;
+}
+
+.card {
+    background: #f9fafb;
+    padding: 20px;
+    border-radius: 14px;
+    margin-bottom: 14px;
+}
+
+button {
+    background: #2563eb;
+    color: #fff;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+button:hover {
+    background: #1e40af;
+}
+
+button.danger {
+    background: #dc2626;
+}
+
+button.danger:hover {
+    background: #b91c1c;
+}
+
+.submit-btn {
+    width: 100%;
+    margin-top: 30px;
+    font-size: 16px;
+}
+
+.error {
+    font-size: 12px;
+    color: #dc2626;
+    margin-left: 4px;
+}
+
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched {
+    border-color: #dc2626;
+}

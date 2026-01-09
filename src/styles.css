@@ -951,3 +951,7 @@ glass-title {
 .google-style span:nth-child(4) { color: #4285F4; } /* Blue */
 .google-style span:nth-child(5) { color: #34A853; } /* Green */
 .google-style span:nth-child(6) { color: #EA4335; } /* Red */
+
+p{
+  font-size: small;
+}
