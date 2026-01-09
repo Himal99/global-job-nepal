@@ -22,6 +22,10 @@ import {JobsComponent} from "./pages/jobs/jobs.component";
 import {authGuard} from "./guards/auth.guard";
 import {logoutGuard} from "./guards/logout.guard";
 import {JobDescComponent} from "./pages/job-desc/job-desc.component";
+import {AiComponent} from "./pages/ai/ai.component";
+import {PrepareLoksewaComponent} from "./loksewa/prepare-loksewa/prepare-loksewa.component";
+import {FaqComponent} from "./pages/faq/faq.component";
+import {LoksewaNewsComponent} from "./loksewa/loksewa-news/loksewa-news.component";
 
 export const routes: Routes = [
   {
@@ -95,6 +99,24 @@ export const routes: Routes = [
         canActivate:[authGuard]
       },
       {
+        path:'ai',
+        component:AiComponent,
+        title:'Udaan | AI',
+        canActivate:[authGuard]
+      },
+      {
+        path:'loksewa-prep',
+        component:PrepareLoksewaComponent,
+        title:'Udaan | Loksewa',
+        canActivate:[authGuard]
+      },
+      {
+        path:'faq',
+        component:FaqComponent,
+        title:'Udaan | Frequently asked quiestions',
+        canActivate:[authGuard]
+      },
+      {
         path:'line-chart',
         component:LineChartComponent,
         title:'Angular Line Chart Dashboard | TailAdmin - Angular Admin Dashboard Template'
@@ -133,6 +155,11 @@ export const routes: Routes = [
         path:'videos',
         component:VideosComponent,
         title:'Angular Videos Dashboard | TailAdmin - Angular Admin Dashboard Template'
+      },
+      {
+        path:'loksewa-notice',
+        component:LoksewaNewsComponent,
+        title:'Udaan | Loksewa Notice'
       },
     ]
   },

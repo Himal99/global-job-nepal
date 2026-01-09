@@ -1,0 +1,65 @@
+
+<!-- PSC Header -->
+<!-- PSC Centered Header -->
+<!-- PSC Header -->
+<div class="psc-wrapper">
+
+    <!-- Watermark -->
+    <div class="psc-watermark"></div>
+
+    <div class="psc-header">
+        <img
+                src="https://psc.gov.np/assets/public/images/logo.png"
+                alt="Lok Sewa Aayog"
+                class="psc-logo"
+        />
+
+        <div class="psc-title-nepali">लोक सेवा आयोग</div>
+        <div class="psc-title-english">Public Service Commission</div>
+        <div class="psc-title-sub">Government of Nepal</div>
+    </div>
+
+    <!-- Notice Meta -->
+    <div class="psc-meta">
+        <div><strong>सूचना नं:</strong> ०१/२०८१–८२</div>
+        <div><strong>प्रकाशित मिति:</strong> २०८१/०९/२५</div>
+    </div>
+
+</div>
+
+<!-- PSC Tabs -->
+
+
+
+<div class="pt-3">
+
+    <p class="page-subtitle">पछिल्ला विज्ञापन तथा सूचना</p>
+
+    <!-- Search -->
+    <input
+            type="text"
+            class="search-box"
+            placeholder="सूचना खोज्नुहोस्..."
+            [(ngModel)]="searchText"
+    />
+
+    <!-- Notice List -->
+    <div class="notice-card" *ngFor="let n of data">
+        <img class="pdf-icon" [src]="n.iconUrl" alt="PDF">
+
+        <div class="notice-content">
+            <div class="notice-title">
+                {{ n.title }}
+                <span class="badge-new" *ngIf="n.isNew">NEW</span>
+            </div>
+            <div class="notice-meta">PDF Document • Lok Sewa Aayog</div>
+        </div>
+
+        <div class="notice-actions">
+            <a [href]="n.pdfUrl" target="_blank" class="btn view">View</a>
+            <a [href]="n.pdfUrl" download class="btn download">Download</a>
+        </div>
+    </div>
+</div>
+
+<app-loader [show]="spin"></app-loader>

@@ -1,0 +1,312 @@
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 16px;
+    font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+.page-title {
+    font-size: 26px;
+    font-weight: 600;
+}
+
+.page-subtitle {
+    color: #64748b;
+    margin-bottom: 20px;
+}
+
+.search-box {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+    margin-bottom: 24px;
+    font-size: 14px;
+}
+
+.notice-card {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 18px;
+    margin-bottom: 14px;
+    transition: 0.25s;
+}
+
+.notice-card:hover {
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    transform: translateY(-2px);
+}
+
+.pdf-icon {
+    width: 42px;
+    height: 42px;
+}
+
+.notice-content {
+    flex: 1;
+}
+
+.notice-title {
+    font-size: 15.5px;
+    line-height: 1.5;
+}
+
+.notice-meta {
+    font-size: 13px;
+    color: #64748b;
+}
+
+.badge-new {
+    background: #dc2626;
+    color: #fff;
+    font-size: 11px;
+    padding: 3px 6px;
+    border-radius: 6px;
+    margin-left: 6px;
+}
+
+.notice-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn.view {
+    background: #0f4c81;
+    color: white;
+}
+
+.btn.download {
+    border: 1px solid #e5e7eb;
+    background: #f1f5f9;
+    color: #0f4c81;
+}
+
+@media (max-width: 640px) {
+    .notice-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+.psc-header {
+    background: #ffffff;
+    border-bottom: 2px solid #0f4c81;
+}
+
+.psc-header-inner {
+    max-width: 1100px;
+    margin: auto;
+    padding: 20px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.psc-logo {
+    width: 72px;
+    margin-bottom: 8px;
+}
+
+.psc-title-nepali {
+    font-size: 24px;
+    font-weight: 700;
+    color: #0f4c81;
+}
+
+.psc-title-english {
+    font-size: 14px;
+    font-weight: 500;
+    color: #334155;
+    margin-top: 2px;
+}
+
+.psc-title-sub {
+    font-size: 12px;
+    color: #64748b;
+    margin-top: 2px;
+}
+
+/* Mobile friendly */
+@media (max-width: 640px) {
+    .psc-logo {
+        width: 60px;
+    }
+
+    .psc-title-nepali {
+        font-size: 20px;
+    }
+}
+.psc-tabs-wrapper {
+    max-width: 900px;
+    margin: 0 auto 24px;
+    padding: 0 16px;
+}
+
+/* LEFT alignment */
+.psc-tabs {
+    display: flex;
+    justify-content: flex-start;
+    gap: 12px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.psc-tab {
+    background: transparent;
+    border: none;
+    padding: 10px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    color: #334155;
+    border-bottom: 3px solid transparent;
+    transition: 0.2s;
+}
+
+.psc-tab:hover {
+    color: #0f4c81;
+}
+
+.psc-tab.active {
+    color: #0f4c81;
+    font-weight: 600;
+    border-bottom-color: #0f4c81;
+}
+
+/* Mobile friendly */
+@media (max-width: 640px) {
+    .psc-tabs {
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}
+.psc-wrapper {
+    position: relative;
+    background: #fff;
+    border-bottom: 2px solid #0f4c81;
+    padding-bottom: 16px;
+    margin-bottom: 24px;
+}
+
+/* Watermark */
+.psc-watermark {
+    position: absolute;
+    inset: 0;
+    background: url("https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Emblem_of_Nepal.svg/512px-Emblem_of_Nepal.svg.png")
+    no-repeat center;
+    background-size: 280px;
+    opacity: 0.04;
+    pointer-events: none;
+}
+
+/* Header */
+.psc-header {
+    text-align: center;
+    padding: 24px 16px 12px;
+    position: relative;
+    z-index: 2;
+}
+
+.psc-logo {
+    width: 72px;
+    margin-bottom: 10px;
+}
+
+.psc-title-nepali {
+    font-size: 26px;
+    font-weight: 700;
+    color: #0f4c81;
+}
+
+.psc-title-english {
+    font-size: 14px;
+    font-weight: 500;
+    color: #334155;
+    margin-top: 2px;
+}
+
+.psc-title-sub {
+    font-size: 12px;
+    color: #64748b;
+    margin-top: 2px;
+}
+
+/* Notice meta row */
+.psc-meta {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 8px 16px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #334155;
+    border-top: 1px solid #e5e7eb;
+    position: relative;
+    z-index: 2;
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+    .psc-meta {
+        flex-direction: column;
+        gap: 6px;
+        text-align: center;
+    }
+
+    .psc-title-nepali {
+        font-size: 22px;
+    }
+}
+
+.psc-tabs-wrapper {
+    max-width: 900px;
+    margin: 0 auto 24px;
+    padding: 0 16px;
+}
+
+/* LEFT alignment */
+.psc-tabs {
+    display: flex;
+    justify-content: flex-start;
+    gap: 12px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.psc-tab {
+    background: transparent;
+    border: none;
+    padding: 10px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    color: #334155;
+    border-bottom: 3px solid transparent;
+    transition: 0.2s;
+}
+
+.psc-tab:hover {
+    color: #0f4c81;
+}
+
+.psc-tab.active {
+    color: #0f4c81;
+    font-weight: 600;
+    border-bottom-color: #0f4c81;
+}
+
+/* Mobile friendly */
+@media (max-width: 640px) {
+    .psc-tabs {
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}
