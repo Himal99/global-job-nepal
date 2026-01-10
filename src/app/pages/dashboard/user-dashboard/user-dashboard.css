@@ -39,3 +39,156 @@ body { background-color: #F9FAFB; color: #1f2937; }
 footer { text-align: center; padding: 20px; font-size: 13px; color: #6b7280; }
 
 @media (max-width: 768px) { .container { grid-template-columns: 1fr; } .header-card-inner { flex-direction: column; align-items: center; text-align: center; } .header-profile-pic { margin-top: 12px; } }
+.about-modal {
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+.modal-header {
+    border-bottom: none;
+    padding: 20px 24px;
+}
+
+.modal-title {
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.modal-body {
+    padding: 20px 24px;
+}
+
+.about-label {
+    font-weight: 500;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.about-textarea {
+    border-radius: 10px;
+    resize: none;
+    font-size: 14px;
+    padding: 12px;
+    border-color: black;
+}
+
+.about-textarea:focus {
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
+    border-color: #007bff;
+}
+
+.modal-footer {
+    border-top: none;
+    padding: 16px 24px;
+}
+
+.modal-footer .btn {
+    min-width: 110px;
+    border-radius: 8px;
+}
+.cdk-drag-preview {
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    border-radius: 10px;
+}
+
+.cdk-drag-placeholder {
+    opacity: 0.4;
+}
+
+.cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+.profile-card {
+    padding: 16px;
+    margin-top: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    background:#fff;
+}
+
+.skills-list {
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.skill-card {
+    padding:12px;
+    border-radius:16px;
+    background:#f9f9f9;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    cursor: grab;
+    transition: transform 0.2s;
+}
+
+.skill-card:active { cursor: grabbing; }
+
+.skill-header {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:6px;
+}
+
+.skill-name { display:flex; align-items:center; gap:6px; font-weight:500; }
+
+.top-star { color:#f59e0b; }
+
+.verified { color:#10b981; font-size:12px; }
+
+.skill-buttons button {
+    background:#fff; border:1px solid #2563eb; color:#2563eb;
+    border-radius:14px; padding:4px 10px; font-size:11px; cursor:pointer;
+    margin-left:4px;
+}
+
+.endorsements { font-size:12px; color:#6b7280; }
+
+.skill-progress .progress-info {
+    display:flex; justify-content:space-between; font-size:11px; color:#6b7280; margin-bottom:2px;
+}
+
+.skill-progress .progress-bar {
+    height:6px;
+    background:#e5e7eb;
+    border-radius:6px;
+    overflow:hidden;
+}
+
+.skill-progress .progress-fill {
+    height:100%;
+    background:#2563eb;
+    border-radius:6px;
+    transition: width 0.6s ease;
+}
+
+/* Add Skill */
+.add-skill {
+    display:flex;
+    gap:6px;
+    margin-top:12px;
+}
+
+.add-skill input {
+    flex:1;
+    padding:6px 10px;
+    border-radius:6px;
+    border:1px solid #ccc;
+}
+
+.add-skill button {
+    background:#2563eb;
+    color:#fff;
+    border:none;
+    border-radius:6px;
+    padding:6px 12px;
+    cursor:pointer;
+}
+
+/* Drag styles */
+.cdk-drag-preview {
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    border-radius: 12px;
+}
+.cdk-drag-placeholder { opacity:0.4; }
+.cdk-drag-animating { transition: transform 250ms cubic-bezier(0,0,0.2,1); }

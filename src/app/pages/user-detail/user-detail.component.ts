@@ -5,6 +5,10 @@ import {NgForOf, NgIf} from "@angular/common";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserDetailService} from "./user-detail.service";
 import {LoaderComponent} from "../../utils/loader/loader.component";
+import {ButtonComponent} from "../../shared/components/ui/button/button.component";
+import {InputFieldComponent} from "../../shared/components/form/input/input-field.component";
+import {LabelComponent} from "../../shared/components/form/label/label.component";
+import {ModalComponent} from "../../shared/components/ui/modal/modal.component";
 
 @Component({
   selector: 'app-user-detail',
@@ -12,7 +16,11 @@ import {LoaderComponent} from "../../utils/loader/loader.component";
     ReactiveFormsModule,
     NgIf,
     NgForOf,
-    LoaderComponent
+    LoaderComponent,
+    ButtonComponent,
+    InputFieldComponent,
+    LabelComponent,
+    ModalComponent
   ],
   templateUrl: './user-detail.component.html',
   styleUrl: './user-detail.component.css',
@@ -35,7 +43,7 @@ export class UserDetailComponent implements OnInit{
   this.email =  this.activatedRoute.snapshot.paramMap.get('id');
     console.log(this.email)
 
-    this.spin= true;
+    // this.spin= true;
     this.service.getByEmail(this.email)
         .subscribe(rs =>{
           this.detail = rs?.data
@@ -87,8 +95,25 @@ export class UserDetailComponent implements OnInit{
         this.projects.push(this.createProjects(exp));
       });
     }
+    console.log('here', this.detail)
+    if (this.detail?.education?.length) {
+      console.log('yes eddd')
+      this.detail?.education.forEach((exp: any) => {
+        console.log('edu cx')
+        this.education.push(this.createEducation(exp));
+      });
+    }
 
-    this.addEducation();
+    if (this.detail?.socialMediaLinks?.length) {
+      console.log('yes eddd')
+      this.detail?.socialMediaLinks.forEach((exp: any) => {
+        console.log('edu cx')
+        this.mediaLink.push(this.createMediaLink(exp));
+      });
+    }
+
+    // // this.addEducation();
+    // this.addMediaLink();
   }
 
   createExperience(exp?: any): FormGroup {
@@ -97,6 +122,24 @@ export class UserDetailComponent implements OnInit{
       position: [exp?.position || ''],
       projects: [exp?.projects || '']
     });
+  }
+
+  createEducation(exp?: any): any {
+  return   this.fb.group({
+    collegeName: [exp?.collegeName || ''],
+    faculty : [exp?.faculty || ''],
+    startDate: [exp?.startDate || ''],
+    endDate:[exp?.endDate || ''],
+    status: [exp?.status || ''],
+    degreeType: [exp?.degreeType || ''],
+  })
+  }
+
+  createMediaLink(exp?: any): any {
+    return   this.fb.group({
+      link: [exp?.link || ''],
+      mediaType: [exp?.mediaType || ''],
+    })
   }
 
   createProjects(exp?: any): FormGroup {
@@ -157,6 +200,10 @@ export class UserDetailComponent implements OnInit{
     this.education.removeAt(index);
   }
 
+  removeMediaLink(index: number) {
+    this.mediaLink.removeAt(index);
+  }
+
   removeExperience(index: number) {
     this.experience.removeAt(index);
   }
@@ -181,7 +228,10 @@ export class UserDetailComponent implements OnInit{
 
   // ================= SUBMIT =================
   spin=false;
+  isOpen = false;
   submit() {
+
+
     this.spin= true;
     if (this.userForm.invalid) {
       this.userForm.markAllAsTouched();
@@ -200,6 +250,10 @@ export class UserDetailComponent implements OnInit{
           this.spin= false;
         })
 
+
+  }
+
+  closeModal() {
 
   }
 }
