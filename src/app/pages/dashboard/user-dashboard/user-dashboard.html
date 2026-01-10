@@ -303,7 +303,7 @@ font-size: smaller; color: gray; padding-top: 25px">You can write about your yea
                            <textarea style="width: 100%;"
                                    class="form-control"
                                    rows="5"
-
+                            [(ngModel)]="about"
                                    placeholder="Write something about yourself..."
 
                                      [value]="detail?.about"
@@ -314,7 +314,7 @@ font-size: smaller; color: gray; padding-top: 25px">You can write about your yea
 
                        <!-- Footer -->
                        <div class="modal-footer">
-                           <button type="button" class="btn btn-sm btn-primary">
+                           <button (click)="updateAboutSection()" type="button" class="btn btn-sm btn-primary">
                                Save Changes
                            </button>
                        </div>
@@ -325,3 +325,5 @@ font-size: smaller; color: gray; padding-top: 25px">You can write about your yea
 
     </div>
 </app-modal>
+
+<app-loader [show]="spin"></app-loader>

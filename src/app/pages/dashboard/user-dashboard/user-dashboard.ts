@@ -3,12 +3,10 @@ import {LoaderComponent} from "../../../utils/loader/loader.component";
 import {Router} from "@angular/router";
 import {UserDetailService} from "../../user-detail/user-detail.service";
 import {DatePipe, NgForOf, NgIf} from "@angular/common";
-import {ButtonComponent} from "../../../shared/components/ui/button/button.component";
 import {FormsModule} from "@angular/forms";
 import {ModalComponent} from "../../../shared/components/ui/modal/modal.component";
-import {InputFieldComponent} from "../../../shared/components/form/input/input-field.component";
-import {LabelComponent} from "../../../shared/components/form/label/label.component";
 import {CdkDragDrop, CdkDropList, DragDropModule, moveItemInArray} from '@angular/cdk/drag-drop';
+
 
 @Component({
     selector: 'app-ecommerce',
@@ -17,39 +15,41 @@ import {CdkDragDrop, CdkDropList, DragDropModule, moveItemInArray} from '@angula
         LoaderComponent,
         NgForOf,
         DatePipe,
-        ButtonComponent,
         FormsModule,
         ModalComponent,
-        InputFieldComponent,
-        LabelComponent,
         CdkDropList,
         NgIf,
         DragDropModule
     ],
     templateUrl: './user-dashboard.html',
-    styleUrl:'./user-dashboard.css'
+    styleUrl: './user-dashboard.css'
 })
 export class UserDashboard implements OnInit {
-
-
+    spin = false;
+    about: any;
     skills = [
-        { name: 'Java', match: 92, endorsements: 42, verified: true },
-        { name: 'Spring Boot', match: 88, endorsements: 38, verified: true }
-        ]
+        {name: 'Java', match: 92, endorsements: 42, verified: true},
+        {name: 'Spring Boot', match: 88, endorsements: 38, verified: true}
+    ]
 
     // Job requirement example (for match %)
     jobSkills = [
-        { name: 'Java', required: true },
-        { name: 'Angular', required: true },
-        { name: 'Spring Boot', required: true },
+        {name: 'Java', required: true},
+        {name: 'Angular', required: true},
+        {name: 'Spring Boot', required: true},
     ];
-    endorse(skill: any) { skill.endorsements++; }
 
-    addSkill(name: string) {
-        if(name.trim()) this.skills.push({ name: name.trim(), match: 50, endorsements: 0, verified: false });
+    endorse(skill: any) {
+        skill.endorsements++;
     }
 
-    removeSkill(index: number) { this.skills.splice(index, 1); }
+    addSkill(name: string) {
+        if (name.trim()) this.skills.push({name: name.trim(), match: 50, endorsements: 0, verified: false});
+    }
+
+    removeSkill(index: number) {
+        this.skills.splice(index, 1);
+    }
 
     drop(event: CdkDragDrop<any[]>) {
         moveItemInArray(this.skills, event.previousIndex, event.currentIndex);
@@ -59,18 +59,20 @@ export class UserDashboard implements OnInit {
         const jobSkill = this.jobSkills.find(j => j.name.toLowerCase() === skill.name.toLowerCase());
         return jobSkill ? skill.match : Math.floor(skill.match * 0.6);
     }
+
 // Endorse a skill
 
 
-    isOpen=false;
+    isOpen = false;
     detail: any;
     user: any;
+
     constructor(protected router: Router,
                 protected detailService: UserDetailService) {
     }
 
     userName: string | null = '';
-    email: string | null = '';
+    email: any;
 
     ngOnInit(): void {
         this.userName = localStorage.getItem('userName')
@@ -87,6 +89,31 @@ export class UserDashboard implements OnInit {
         this.router.navigate([`/profile-detail/${localStorage.getItem('email')}`])
     }
 
-    openModal() { this.isOpen = true; }
-    closeModal() { this.isOpen = false; }
+    openModal() {
+        this.isOpen = true;
+    }
+
+    closeModal() {
+        this.isOpen = false;
+    }
+
+    updateAboutSection() {
+        this.spin = true;
+      const  body = {
+            data: this.about
+        }
+        this.detailService.updateDetailSection(body, this.email, 'ABOUT')
+            .subscribe(rs => {
+                this.spin = false;
+                this.detailService.getByEmail(this.email)
+                    .subscribe(rs => {
+                        console.log(rs)
+                        this.detail = rs?.data
+                    })
+                this.closeModal();
+
+            }, err => {
+                this.spin = false;
+            })
+    }
 }

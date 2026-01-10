@@ -6,10 +6,17 @@
         <!-- BASIC INFO -->
         <div class="grid">
 
-            <input formControlName="firstName" placeholder="First Name">
-            <input formControlName="lastName" placeholder="Last Name">
+            <div class="form-group">
+                <label>First Name</label>
+                <input formControlName="firstName" placeholder="First Name">
+            </div>
+           <div class="form-group">
+               <label>Last Name</label>
+               <input formControlName="lastName" placeholder="Last Name">
+           </div>
 
-            <div>
+            <div class="form-group">
+                <label>Phonen Number</label>
                 <input formControlName="phone" placeholder="Phone Number">
                 <small *ngIf="userForm.get('phone')?.touched && userForm.get('phone')?.invalid"
                        class="error">
@@ -18,101 +25,147 @@
             </div>
 
 
-            <input formControlName="skills" placeholder="Skills (comma separated)">
-            <input formControlName="profilePicture" placeholder="Profile Picture URL">
-            <input formControlName="resumeLinks" placeholder="Resume Link">
+            <div>
+                <label>Skills</label>
+                <input formControlName="skills" placeholder="Skills (comma separated)">
+            </div>
+
 
         </div>
 
         <br>
+
+        <label>About</label>
         <textarea class="pt-3" formControlName="about" placeholder="About You"></textarea>
 
         <!-- ADDRESS -->
-        <h3>Address</h3>
+        <h3>Address : </h3>
         <div formGroupName="address" class="grid">
-            <input formControlName="country" placeholder="Country">
-            <input formControlName="state" placeholder="State">
-            <input formControlName="city" placeholder="City">
-            <input formControlName="street" placeholder="Street">
-            <input formControlName="zip" placeholder="ZIP Code">
+           <div>
+               <label for="">Country</label>
+               <input formControlName="country" placeholder="Country">
+           </div>
+           <div>
+               <label for="">state</label>
+               <input formControlName="state" placeholder="State"></div>
+           <div>
+               <label>City</label>
+               <input formControlName="city" placeholder="City">
+           </div>
+           <div>
+               <label>Street</label>
+               <input formControlName="street" placeholder="Street">
+           </div>
+          <div>
+              <label for="">Zip Code</label>
+              <input formControlName="zip" placeholder="ZIP Code">
+          </div>
         </div>
 
-        <h3>Education</h3>
+        <h3>Education :</h3>
 
         <div formArrayName="education" class="pt-3">
 
             <div  class="grid" *ngFor="let exp of education.controls; let i=index"
                  [formGroupName]="i">
 
-            <input  formControlName="collegeName" placeholder="College Name">
+           <div>
+               <label for="">College/University Name</label>
+               <input  formControlName="collegeName" placeholder="College Name">
+           </div>
 
-                <select formControlName="degreeType" class="w-full rounded-lg border px-3 py-2 text-sm
+                <div>
+                    <label for="">Degree</label>
+                    <select formControlName="degreeType" class="w-full rounded-lg border px-3 py-2 text-sm
              focus:outline-none focus:ring-2 focus:ring-indigo-500
              focus:border-indigo-500
              disabled:bg-gray-100
              transition">
-                    <option value="" disabled selected>Select Degree</option>
-                    <option [value]="'PLUS_2'" >PLUS_2</option>
-                    <option [value]="'BACHELOR'">BACHELOR</option>
-                    <option [value]="'MASTER'">MASTER</option>
-                    <option [value]="'PHD'">PHD</option>
-                    <option [value]="'DIPLOMA'">DIPLOMA</option>
-                    <option [value]="'OTHER'">OTHER</option>
-                </select>
+                        <option value="" disabled selected>Select Degree</option>
+                        <option [value]="'PLUS_2'" >PLUS_2</option>
+                        <option [value]="'BACHELOR'">BACHELOR</option>
+                        <option [value]="'MASTER'">MASTER</option>
+                        <option [value]="'PHD'">PHD</option>
+                        <option [value]="'DIPLOMA'">DIPLOMA</option>
+                        <option [value]="'OTHER'">OTHER</option>
+                    </select>
+                </div>
 
-            <input formControlName="faculty" placeholder="Faculty">
-            <input type="date" formControlName="startDate" placeholder="Start Date">
-            <input type="date" formControlName="endDate" placeholder="End Date">
+           <div>
+               <label for="">Faculty</label>
+               <input formControlName="faculty" placeholder="Faculty">
+           </div>
+          <div>
+              <label for="">Start Date</label>
+              <input type="date" formControlName="startDate" placeholder="Start Date">
+          </div>
+          <div>
+              <label for="">End Date</label>
+              <input type="date" formControlName="endDate" placeholder="End Date">
+          </div>
 
-               <select formControlName="status" class="w-full rounded-lg border px-3 py-2 text-sm
+              <div>
+                  <label for="">Status</label>
+                  <select formControlName="status" class="w-full rounded-lg border px-3 py-2 text-sm
              focus:outline-none focus:ring-2 focus:ring-indigo-500
              focus:border-indigo-500
              disabled:bg-gray-100
              transition">
 
-                   <option value="" disabled selected>
-                       Select Status
-                   </option>
-                   <option value="RUNNING">Running</option>
-                   <option value="GRADUATED">Graduate</option>
+                      <option value="" disabled selected>
+                          Select Status
+                      </option>
+                      <option value="RUNNING">Running</option>
+                      <option value="GRADUATED">Graduate</option>
 
-               </select>
+                  </select>
+              </div>
 
-                <button *ngIf="i!=0" type="button" class="danger" (click)="removeEducation(i)">
-                    Remove
-                </button>
+               <div class="pt-3">
+                   <button *ngIf="i!=0" type="button" class="danger btn-sm" (click)="removeEducation(i)">
+                       Remove
+                   </button>
+               </div>
         </div>
             <button type="button" (click)="addEducation()">+ Add Education</button>
         </div>
-        <h3>Social Media</h3>
+        <h3>Social Media : </h3>
 
         <div formArrayName="socialMediaLinks" class="pt-3">
 
             <div  class="grid" *ngFor="let exp of mediaLink.controls; let i=index"
                   [formGroupName]="i">
-                <select formControlName="mediaType" class="w-full rounded-lg border px-3 py-2 text-sm
+                <div>
+                    <label for="">Media</label>
+                    <select formControlName="mediaType" class="w-full rounded-lg border px-3 py-2 text-sm
              focus:outline-none focus:ring-2 focus:ring-indigo-500
              focus:border-indigo-500
              disabled:bg-gray-100
              transition">
 
-                    <option value="" disabled selected>
-                        Select Media
-                    </option>
-                    <option value="FB">Facebook</option>
-                    <option value="INSTAGRAM">Instagram</option>
-                    <option value="LINKEDIN">LinkedIn</option>
-                    <option value="YOUTUBE">Youtube</option>
-                    <option value="GITHUB">Git Hub</option>
-                    <option value="TWITTER">Twitter</option>
-                    <option value="PERSONAL_SITE">Personal Site</option>
+                        <option value="" disabled selected>
+                            Select Media
+                        </option>
+                        <option value="FB">Facebook</option>
+                        <option value="INSTAGRAM">Instagram</option>
+                        <option value="LINKEDIN">LinkedIn</option>
+                        <option value="YOUTUBE">Youtube</option>
+                        <option value="GITHUB">Git Hub</option>
+                        <option value="TWITTER">Twitter</option>
+                        <option value="PERSONAL_SITE">Personal Site</option>
 
-                </select>
+                    </select>
+                </div>
 
-                <input formControlName="link" placeholder="Link">
-                <button *ngIf="i!=0" type="button" class="danger" (click)="removeMediaLink(i)">
-                    Remove
-                </button>
+               <div>
+                   <label for="">Media Link</label>
+                   <input formControlName="link" placeholder="Link">
+               </div>
+               <div class="pt-4">
+                   <button *ngIf="i!=0" type="button" class="danger btn-sm" (click)="removeMediaLink(i)">
+                       Remove
+                   </button>
+               </div>
 
             </div>
 
@@ -126,11 +179,25 @@
         <!-- EXPERIENCE -->
         <h3>Experience</h3>
         <div formArrayName="experience">
-            <div class="card" *ngFor="let exp of experience.controls; let i=index"
+            <div  *ngFor="let exp of experience.controls; let i=index"
                  [formGroupName]="i">
-                <input formControlName="company" placeholder="Company">
-                <input formControlName="position" placeholder="Position">
-                <textarea formControlName="projects" placeholder="Projects"></textarea>
+              <div class="grid">
+                  <div>
+                      <label for="">Company</label>
+                      <input formControlName="company" placeholder="Company">
+                  </div>
+                  <div>
+
+                      <label for="">Position</label>
+                      <input formControlName="position" placeholder="Position">
+                  </div>
+
+              </div>
+                <div>
+
+                    <label for="">Projects</label>
+                    <textarea formControlName="projects" placeholder="Projects"></textarea>
+                </div>
                 <button type="button" class="danger" (click)="removeExperience(i)">
                     Remove
                 </button>
@@ -144,11 +211,25 @@
         <div formArrayName="projects">
             <div class="card" *ngFor="let p of projects.controls; let i=index"
                  [formGroupName]="i">
-                <input formControlName="company" placeholder="Company">
-                <br>
-                <input formControlName="position" placeholder="Position">
-                <br>
-                <input formControlName="projectName" placeholder="Project Name">
+              <div class="grid">
+
+                  <div>
+                      <label>Company</label>
+                      <input formControlName="company" placeholder="Company">
+                  </div>
+
+                  <div>
+                      <label>Position</label>
+                      <input formControlName="position" placeholder="Position">
+                  </div>
+
+                <div>
+                    <label for="">Project Name</label>
+                    <input formControlName="projectName" placeholder="Project Name">
+                </div>
+
+
+              </div>
                 <br>
                 <textarea formControlName="projectDescription" placeholder="Description"></textarea>
                 <button type="button" class="danger" (click)="removeProject(i)">

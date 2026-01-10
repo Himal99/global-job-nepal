@@ -4,6 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {ApiUtils} from "../../core/ApiUtils";
 
+
 @Injectable({
   providedIn: 'root',
 })
@@ -28,5 +29,11 @@ export class UserDetailService extends BaseService<any> {
     const api = `${this.getApi()}/by-email?email=${email}`;
     const req = ApiUtils.getRequest(api);
     return this.http.get(req.url, {headers: req.header});
+  }
+
+  public updateDetailSection(body: any,email:string,section:string): Observable<any> {
+    const api = `${this.getApi()}/update/${section}?email=${email}`;
+    const req = ApiUtils.getRequest(api);
+    return this.http.post(req.url,body, {headers: req.header});
   }
 }

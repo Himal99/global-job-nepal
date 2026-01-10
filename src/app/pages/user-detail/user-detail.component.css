@@ -1,6 +1,6 @@
 .user-form {
     max-width: 100%;
-    margin: 40px auto;
+    margin: 1px auto;
     background: #ffffff;
     padding: 30px;
     border-radius: 18px;
@@ -38,6 +38,7 @@ textarea {
     padding: 20px;
     border-radius: 14px;
     margin-bottom: 14px;
+
 }
 
 button {
