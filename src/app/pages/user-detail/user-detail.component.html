@@ -17,11 +17,11 @@
                 </small>
             </div>
 
-            <input formControlName="education" placeholder="Education">
+
             <input formControlName="skills" placeholder="Skills (comma separated)">
             <input formControlName="profilePicture" placeholder="Profile Picture URL">
             <input formControlName="resumeLinks" placeholder="Resume Link">
-            <input formControlName="socialMediaLinks" placeholder="Social Media Links">
+
         </div>
 
         <br>
@@ -37,6 +37,51 @@
             <input formControlName="zip" placeholder="ZIP Code">
         </div>
 
+        <h3>Education</h3>
+
+        <div formArrayName="education" class="pt-3">
+            <div  class="grid" *ngFor="let exp of education.controls; let i=index"
+                 [formGroupName]="i">
+            <input formControlName="collegeName" placeholder="College Name">
+
+                <select formControlName="degreeType" class="w-full rounded-lg border px-3 py-2 text-sm
+             focus:outline-none focus:ring-2 focus:ring-indigo-500
+             focus:border-indigo-500
+             disabled:bg-gray-100
+             transition">
+                    <option value="" disabled selected>Select Degree</option>
+                    <option [value]="'PLUS_2'" >PLUS_2</option>
+                    <option [value]="'BACHELOR'">BACHELOR</option>
+                    <option [value]="'MASTER'">MASTER</option>
+                    <option [value]="'PHD'">PHD</option>
+                    <option [value]="'DIPLOMA'">DIPLOMA</option>
+                    <option [value]="'OTHER'">OTHER</option>
+                </select>
+
+            <input formControlName="faculty" placeholder="Faculty">
+            <input type="date" formControlName="startDate" placeholder="Start Date">
+            <input type="date" formControlName="endDate" placeholder="End Date">
+
+               <select formControlName="status" class="w-full rounded-lg border px-3 py-2 text-sm
+             focus:outline-none focus:ring-2 focus:ring-indigo-500
+             focus:border-indigo-500
+             disabled:bg-gray-100
+             transition">
+
+                   <option value="" disabled selected>
+                       Select Status
+                   </option>
+                   <option value="RUNNING">Running</option>
+                   <option value="GRADUATE">Graduate</option>
+
+               </select>
+
+                <button *ngIf="i!=0" type="button" class="danger" (click)="removeEducation(i)">
+                    Remove
+                </button>
+        </div>
+            <button type="button" (click)="addEducation()">+ Add Education</button>
+        </div>
         <!-- EXPERIENCE -->
         <h3>Experience</h3>
         <div formArrayName="experience">

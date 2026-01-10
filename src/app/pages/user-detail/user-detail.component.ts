@@ -54,12 +54,12 @@ export class UserDetailComponent implements OnInit{
      email: undefined,
 
       phone: [this.detail?.phone, [Validators.required, Validators.pattern('^[0-9]{10}$')]],
-      education: [this.detail?.education],
+      education: this.fb.array([]),
       skills: [this.detail?.skills],
       about: [this.detail?.about],
       profilePicture: [this.detail?.profilePicture],
       resumeLinks: [this.detail?.resumeLinks],
-      socialMediaLinks: [this.detail?.socialMediaLinks],
+      socialMediaLinks: this.fb.array([]),
 
       address: this.fb.group({
         country: [this.detail?.address?.country],
@@ -88,6 +88,7 @@ export class UserDetailComponent implements OnInit{
       });
     }
 
+    this.addEducation();
   }
 
   createExperience(exp?: any): FormGroup {
@@ -125,6 +126,35 @@ export class UserDetailComponent implements OnInit{
       position: [''],
       projects: ['']
     }));
+  }
+
+  get education(): FormArray {
+    return this.userForm.get('education') as FormArray;
+  }
+
+  get mediaLink(): FormArray {
+    return this.userForm.get('socialMediaLinks') as FormArray;
+  }
+
+  addEducation() {
+    this.education.push(this.fb.group({
+      collegeName: [''],
+      faculty : [''],
+      startDate: [''],
+      endDate: [''],
+      status: [''],
+      degreeType: [''],
+    }));
+  }
+
+  addMediaLink() {
+    this.mediaLink.push(this.fb.group({
+      link: [''],
+      mediaType: ['']
+    }));
+  }
+  removeEducation(index: number) {
+    this.education.removeAt(index);
   }
 
   removeExperience(index: number) {
