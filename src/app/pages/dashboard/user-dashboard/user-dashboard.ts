@@ -6,6 +6,7 @@ import {DatePipe, NgForOf, NgIf} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {ModalComponent} from "../../../shared/components/ui/modal/modal.component";
 import {CdkDragDrop, CdkDropList, DragDropModule, moveItemInArray} from '@angular/cdk/drag-drop';
+import {FooterComponent} from "../../../shared/layout/footer/footer.component";
 
 
 @Component({
@@ -19,7 +20,8 @@ import {CdkDragDrop, CdkDropList, DragDropModule, moveItemInArray} from '@angula
         ModalComponent,
         CdkDropList,
         NgIf,
-        DragDropModule
+        DragDropModule,
+        FooterComponent
     ],
     templateUrl: './user-dashboard.html',
     styleUrl: './user-dashboard.css'
@@ -75,6 +77,8 @@ export class UserDashboard implements OnInit {
     email: any;
 
     ngOnInit(): void {
+
+
         this.userName = localStorage.getItem('userName')
         this.email = localStorage.getItem('email')
 

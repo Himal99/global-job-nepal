@@ -240,12 +240,18 @@
 
         <button type="button" (click)="addProject()">+ Add Project</button>
 
-        <button class="submit-btn" type="submit">
-            {{ isEditMode ? 'Update Profile' : 'Save Profile' }}
-        </button>
+       <div class="grid">
+           <button class="danger submit-btn" type="button" (click)="location.back()">
+              Cancel
+           </button>
+
+           <button class="submit-btn" type="submit">
+               Update Profile
+           </button>
+       </div>
 
     </form>
 </div>
 
-
+<app-footer></app-footer>
 <app-loader [show]="spin"></app-loader>
