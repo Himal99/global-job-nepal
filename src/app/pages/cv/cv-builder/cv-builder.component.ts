@@ -188,6 +188,81 @@ export class CvBuilderComponent implements OnInit{
 
     previewWindow.document.close();
   }
+  async shareCV() {
+    const cv = document.querySelector('.cv-preview') as HTMLElement;
+    if (!cv) return;
 
+    const canvas = await html2canvas(cv);
+    const imgData = canvas.toDataURL('image/png');
+
+    // Convert canvas to blob for Web Share API
+    const blob = await (await fetch(imgData)).blob();
+    const filesArray = [new File([blob], 'CV.pdf', { type: 'application/pdf' })];
+
+    // Define a hosted CV URL for copy/share fallback
+    const hostedCVUrl = `https://mycvapp.com/view?user=123`;
+
+    if (navigator.canShare && navigator.canShare({ files: filesArray })) {
+      // Mobile/Web Share API
+      navigator.share({
+        title: 'My CV',
+        files: filesArray,
+        text: 'Check out my CV!'
+      })
+          .then(() => console.log('Shared successfully'))
+          .catch(err => console.error('Share failed', err));
+    } else if (navigator.clipboard) {
+      // Fallback for desktop: copy hosted link
+      navigator.clipboard.writeText(hostedCVUrl)
+          .then(() => alert('CV link copied to clipboard!'))
+          .catch(() => {
+            // If clipboard fails, fallback to download PDF
+            this.downloadPDF();
+            alert('Unable to copy link. CV PDF downloaded instead.');
+          });
+    } else {
+      // Final fallback: download PDF
+      this.downloadPDF();
+      alert('Sharing not supported. CV PDF downloaded.');
+    }
+  }
+  copyLink() {
+    // Your hosted CV link (replace with dynamic user ID if needed)
+    const cvLink = 'https://mycvapp.com/view?user=123';
+
+    if (navigator.clipboard && window.isSecureContext) {
+      // Modern secure browsers
+      navigator.clipboard.writeText(cvLink)
+          .then(() => alert('CV link copied to clipboard!'))
+          .catch(() => alert('Failed to copy CV link.'));
+    } else {
+      // Fallback for insecure context or older browsers
+      const textArea = document.createElement('textarea');
+      textArea.value = cvLink;
+      // Avoid scrolling to bottom
+      textArea.style.position = 'fixed';
+      textArea.style.top = '0';
+      textArea.style.left = '0';
+      textArea.style.width = '1px';
+      textArea.style.height = '1px';
+      textArea.style.padding = '0';
+      textArea.style.border = 'none';
+      textArea.style.outline = 'none';
+      textArea.style.boxShadow = 'none';
+      textArea.style.background = 'transparent';
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+
+      try {
+        const successful = document.execCommand('copy');
+        alert(successful ? 'CV link copied to clipboard!' : 'Failed to copy CV link.');
+      } catch (err) {
+        alert('Failed to copy CV link.');
+      }
+
+      document.body.removeChild(textArea);
+    }
+  }
 
 }

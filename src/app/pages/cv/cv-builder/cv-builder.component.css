@@ -151,49 +151,61 @@ i { margin-right: 6px; opacity: 0.9; }
 .icon-btn:hover {
     background: #1e40af;
 }
-.cv-toolbar {
-    position: fixed;      /* stay fixed on the right */
-    top: 40%;
-    right: 10px;
+.cv-toolbar-vertical {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 10px;
     z-index: 1000;
 }
 
+/* Toolbar Buttons */
 .toolbar-btn {
+    position: relative;
     width: 36px;
     height: 36px;
-    background: #2563eb;
-    border: none;
-    border-radius: 6px;
+    font-size: 16px;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+    border: none;
     cursor: pointer;
-    transition: transform 0.2s, background 0.2s;
+    background: #2563eb;
+    color: white;
+    transition: all 0.2s;
 }
 
-.toolbar-btn svg {
-    width: 18px;
-    height: 18px;
-    fill: white;
-}
-
+/* Hover effect */
 .toolbar-btn:hover {
     background: #1e40af;
     transform: scale(1.1);
 }
 
-/* Tooltip using title attribute (browser default) */
-.toolbar-btn[title]:hover::after {
-    content: attr(title);
+/* Tooltip Label */
+.toolbar-btn .tooltip {
+    visibility: hidden;
+    opacity: 0;
     position: absolute;
-    right: 45px;  /* distance from button */
-    background: #374151;
-    color: white;
-    padding: 3px 6px;
-    font-size: 12px;
+    right: 120%;           /* place tooltip to the left of the button */
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #1e40af;
+    color: #fff;
+    padding: 4px 8px;
     border-radius: 4px;
     white-space: nowrap;
+    font-size: 12px;
+    pointer-events: none;
+    transition: all 0.2s;
+    z-index: 1001;
+}
+
+/* Show tooltip on hover */
+.toolbar-btn:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
 }
