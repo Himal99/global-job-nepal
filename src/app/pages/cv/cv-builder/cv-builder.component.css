@@ -111,3 +111,43 @@ i { margin-right: 6px; opacity: 0.9; }
 .sidebar a.sidebar-link:hover {
     text-decoration: underline;
 }
+.cv-buttons {
+    margin: 15px 0;
+}
+
+.cv-buttons button {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.cv-buttons button:hover {
+    background: #1e40af;
+}
+.icon-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;          /* very small */
+    width: 28px;            /* fixed width */
+    height: 28px;           /* fixed height */
+    border-radius: 4px;
+    background: #2563eb;
+    border: none;
+    cursor: pointer;
+    position: relative;
+}
+
+.icon-btn svg {
+    width: 16px;
+    height: 16px;
+    fill: white;
+}
+
+.icon-btn:hover {
+    background: #1e40af;
+}

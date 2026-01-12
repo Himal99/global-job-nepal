@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {NgForOf, NgIf} from "@angular/common";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 
 @Component({
   selector: 'app-cv-builder',
@@ -102,4 +104,55 @@ export class CvBuilderComponent implements OnInit{
     // @ts-ignore
     this.collapsed[section] = !this.collapsed[section];
   }
+
+  captureScreenshot() {
+    const cvElement = document.querySelector('.cv-preview') as HTMLElement;
+    if (!cvElement) return;
+
+    html2canvas(cvElement, { scale: 2 }).then(canvas => {
+      const imgData = canvas.toDataURL('image/png');
+
+      // Open in new tab (optional)
+      const w = window.open('');
+      if (w) w.document.write('<img src="' + imgData + '"/>');
+    });
+  }
+
+  // Download PDF
+  downloadPDF() {
+    const cvElement = document.querySelector('.cv-preview') as HTMLElement;
+    if (!cvElement) return;
+
+    // Capture the CV as canvas
+    html2canvas(cvElement, { scale: 2 }).then(canvas => {
+      const imgData = canvas.toDataURL('image/png');
+
+      const pdf = new jsPDF('p', 'mm', 'a4'); // Portrait A4
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = pdf.internal.pageSize.getHeight();
+
+      // Canvas dimensions
+      const imgProps = pdf.getImageProperties(imgData);
+      const imgWidth = pdfWidth;
+      const imgHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+      let heightLeft = imgHeight;
+      let position = 0;
+
+      // Add first page
+      pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+      heightLeft -= pdfHeight;
+
+      // Add more pages if content exceeds one page
+      while (heightLeft > 0) {
+        position = heightLeft - imgHeight;
+        pdf.addPage();
+        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+        heightLeft -= pdfHeight;
+      }
+
+      pdf.save('my-cv.pdf');
+    });
+  }
+
 }
