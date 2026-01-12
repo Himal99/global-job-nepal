@@ -1,0 +1,251 @@
+
+
+
+<div class="cv-builder" *ngIf="cvForm">
+
+    <!-- ================= FORM ================= -->
+    <form class="cv-form" [formGroup]="cvForm">
+
+        <h2>Personal Information</h2>
+        <input formControlName="name" placeholder="Full Name">
+        <input formControlName="title" placeholder="Job Title">
+        <input formControlName="email" placeholder="Email">
+        <input formControlName="phone" placeholder="Phone">
+        <input formControlName="location" placeholder="Location">
+        <input formControlName="website" placeholder="Website">
+
+        <h2>About Me</h2>
+        <textarea formControlName="about" placeholder="Write something about yourself"></textarea>
+
+        <h2>Skills</h2>
+        <div formArrayName="skills">
+            <div *ngFor="let s of skills.controls; let i=index">
+                <input [formControlName]="i">
+            </div>
+            <button type="button" (click)="addSkill()">+ Add Skill</button>
+        </div>
+
+        <h2>Experience</h2>
+        <div formArrayName="experience">
+            <div *ngFor="let e of experience.controls; let i=index" [formGroupName]="i">
+                <input formControlName="role" placeholder="Role">
+                <input formControlName="company" placeholder="Company">
+                <input formControlName="duration" placeholder="Duration">
+                <textarea formControlName="description" placeholder="Description"></textarea>
+            </div>
+            <button type="button" (click)="addExperience()">+ Add Experience</button>
+        </div>
+
+        <h2>Education</h2>
+        <div formArrayName="education">
+            <div *ngFor="let ed of education.controls; let i=index" [formGroupName]="i">
+                <input formControlName="degree" placeholder="Degree">
+                <input formControlName="institute" placeholder="Institute">
+                <input formControlName="duration" placeholder="Duration">
+                <textarea formControlName="description" placeholder="Description"></textarea>
+            </div>
+            <button type="button" (click)="addEducation()">+ Add Education</button>
+        </div>
+
+        <h2>Projects</h2>
+        <div formArrayName="projects">
+            <div *ngFor="let p of projects.controls; let i=index" [formGroupName]="i" class="project-form">
+                <input formControlName="name" placeholder="Project Name">
+                <input formControlName="tech" placeholder="Technologies">
+                <input formControlName="link" placeholder="Project Link (optional)">
+                <textarea formControlName="description" placeholder="Description"></textarea>
+            </div>
+            <button type="button" (click)="addProject()">+ Add Project</button>
+        </div>
+        <h2>Additional Info</h2>
+        <div formGroupName="additional">
+            <label>Languages</label>
+            <input formControlName="languages" placeholder="e.g. English, Nepali, Hindi">
+
+            <label>Hobbies / Interests</label>
+            <input formControlName="hobbies" placeholder="e.g. Reading, Coding, Traveling">
+
+            <label>Certifications</label>
+            <input formControlName="certifications" placeholder="e.g. AWS Certified Developer">
+
+            <label>LinkedIn</label>
+            <input formControlName="linkedin" placeholder="LinkedIn profile link">
+
+            <label>GitHub</label>
+            <input formControlName="github" placeholder="GitHub profile link">
+        </div>
+
+    </form>
+
+    <!-- ================= CV PREVIEW ================= -->
+    <div class="cv-preview">
+
+        <!-- SIDEBAR -->
+<!--        <aside class="sidebar">-->
+<!--            <div class="avatar"></div>-->
+
+<!--            <h1>{{ cvForm.value.name }}</h1>-->
+<!--            <h3>{{ cvForm.value.title }}</h3>-->
+
+<!--            <p><i class="fa-solid fa-envelope"></i> {{ cvForm.value.email }}</p>-->
+<!--            <p><i class="fa-solid fa-phone"></i> {{ cvForm.value.phone }}</p>-->
+<!--            <p><i class="fa-solid fa-location-dot"></i> {{ cvForm.value.location }}</p>-->
+<!--            <p><i class="fa-solid fa-globe"></i> {{ cvForm.value.website }}</p>-->
+
+<!--            <h4><i class="fa-solid fa-gears"></i> Skills</h4>-->
+<!--            <div class="skill-tags">-->
+<!--                <span *ngFor="let s of cvForm.value.skills">{{ s }}</span>-->
+<!--            </div>-->
+
+<!--            <h4><i class="fa-solid fa-language"></i> Languages</h4>-->
+<!--            <p>{{ cvForm.value.additional.languages }}</p>-->
+
+<!--            <h4><i class="fa-solid fa-heart"></i> Hobbies</h4>-->
+<!--            <p>{{ cvForm.value.additional.hobbies }}</p>-->
+
+<!--            <h4><i class="fa-solid fa-certificate"></i> Certifications</h4>-->
+<!--            <p>{{ cvForm.value.additional.certifications }}</p>-->
+
+<!--            <h4><i class="fa-brands fa-linkedin"></i> LinkedIn</h4>-->
+<!--            <p>-->
+<!--                <a [href]="cvForm.value.additional.linkedin" target="_blank" class="sidebar-link">-->
+<!--                    {{ cvForm.value.additional.linkedin }}-->
+<!--                </a>-->
+<!--            </p>-->
+
+<!--            <h4><i class="fa-brands fa-github"></i> GitHub</h4>-->
+<!--            <p>-->
+<!--                <a [href]="cvForm.value.additional.github" target="_blank" class="sidebar-link">-->
+<!--                    {{ cvForm.value.additional.github }}-->
+<!--                </a>-->
+<!--            </p>-->
+
+
+<!--        </aside>-->
+        <aside class="sidebar">
+
+            <div class="avatar"></div>
+            <h1>{{ cvForm.value.name }}</h1>
+            <h3>{{ cvForm.value.title }}</h3>
+
+            <!-- Contact Info -->
+            <div class="sidebar-section">
+                <h4><i class="fa-solid fa-address-card"></i> Contact</h4>
+                <div class="section-content">
+                    <p><i class="fa-solid fa-envelope"></i> {{ cvForm.value.email }}</p>
+                    <p><i class="fa-solid fa-phone"></i> {{ cvForm.value.phone }}</p>
+                    <p><i class="fa-solid fa-location-dot"></i> {{ cvForm.value.location }}</p>
+                    <p><i class="fa-solid fa-globe"></i> {{ cvForm.value.website }}</p>
+                </div>
+            </div>
+
+            <!-- Skills -->
+            <div class="sidebar-section collapsible">
+                <h4 (click)="toggleSection('skills')">
+                    <i class="fa-solid fa-gears"></i> Skills
+                    <!-- static chevron -->
+                    <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                </h4>
+                <div class="section-content" [hidden]="collapsed.skills">
+                    <span class="skill-badge" *ngFor="let s of cvForm.value.skills">{{ s }}</span>
+                </div>
+            </div>
+
+
+            <!-- Languages -->
+            <div class="sidebar-section collapsible">
+                <h4 (click)="toggleSection('languages')">
+                    <i class="fa-solid fa-language"></i> Languages
+                    <!-- static chevron -->
+                    <i class="fa-solid fa-chevron-down toggle-icon"></i>      </h4>
+                <div class="section-content" [hidden]="collapsed.languages">
+                    <p>{{ cvForm.value.additional.languages }}</p>
+                </div>
+            </div>
+
+            <!-- Hobbies -->
+            <div class="sidebar-section collapsible">
+                <h4 (click)="toggleSection('hobbies')">
+                    <i class="fa-solid fa-heart"></i> Hobbies
+                    <!-- static chevron -->
+                    <i class="fa-solid fa-chevron-down toggle-icon"></i>     </h4>
+                <div class="section-content" [hidden]="collapsed.hobbies">
+                    <p>{{ cvForm.value.additional.hobbies }}</p>
+                </div>
+            </div>
+
+            <!-- Certifications -->
+            <div class="sidebar-section collapsible">
+                <h4 (click)="toggleSection('certifications')">
+                    <i class="fa-solid fa-certificate"></i> Certifications
+                    <!-- static chevron -->
+                    <i class="fa-solid fa-chevron-down toggle-icon"></i>     </h4>
+                <div class="section-content" [hidden]="collapsed.certifications">
+                    <p>{{ cvForm.value.additional.certifications }}</p>
+                </div>
+            </div>
+
+            <!-- Social Links -->
+            <div class="sidebar-section collapsible">
+                <h4 (click)="toggleSection('social')">
+                    <i class="fa-solid fa-share-nodes"></i> Social
+                    <!-- static chevron -->
+                    <i class="fa-solid fa-chevron-down toggle-icon"></i>         </h4>
+                <div class="section-content" [hidden]="collapsed.social">
+                    <p><i class="fa-brands fa-linkedin"></i>
+                        <a [href]="cvForm.value.additional.linkedin" target="_blank" class="sidebar-link">
+                            {{ cvForm.value.additional.linkedin }}
+                        </a>
+                    </p>
+                    <p><i class="fa-brands fa-github"></i>
+                        <a [href]="cvForm.value.additional.github" target="_blank" class="sidebar-link">
+                            {{ cvForm.value.additional.github }}
+                        </a>
+                    </p>
+                </div>
+            </div>
+
+        </aside>
+
+        <!-- MAIN -->
+        <main class="content">
+
+            <section>
+                <h2><i class="fa-solid fa-user"></i> About Me</h2>
+                <p>{{ cvForm.value.about }}</p>
+            </section>
+
+            <section>
+                <h2><i class="fa-solid fa-briefcase"></i> Experience</h2>
+                <div *ngFor="let e of cvForm.value.experience" class="item">
+                    <h4><i class="fa-solid fa-building"></i> {{ e.role }} - {{ e.company }}</h4>
+                    <span><i class="fa-regular fa-calendar"></i> {{ e.duration }}</span>
+                    <p>{{ e.description }}</p>
+                </div>
+            </section>
+
+            <section>
+                <h2><i class="fa-solid fa-graduation-cap"></i> Education</h2>
+                <div *ngFor="let ed of cvForm.value.education" class="item">
+                    <h4><i class="fa-solid fa-school"></i> {{ ed.degree }} - {{ ed.institute }}</h4>
+                    <span><i class="fa-regular fa-calendar"></i> {{ ed.duration }}</span>
+                    <p>{{ ed.description }}</p>
+                </div>
+            </section>
+
+            <section>
+                <h2><i class="fa-solid fa-diagram-project"></i> Projects</h2>
+                <div *ngFor="let p of cvForm.value.projects" class="item">
+                    <h4><i class="fa-solid fa-code"></i> {{ p.name }}</h4>
+                    <span><i class="fa-solid fa-layer-group"></i> {{ p.tech }}</span>
+                    <p>{{ p.description }}</p>
+                    <a *ngIf="p.link" [href]="p.link" target="_blank" class="project-link">
+                        <i class="fa-brands fa-github"></i> View Project
+                    </a>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+</div>

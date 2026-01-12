@@ -1,0 +1,90 @@
+<div class="app">
+
+    <!-- FORM -->
+    <form class="form" [formGroup]="cvForm">
+
+        <h2>CV Builder</h2>
+
+        <input formControlName="name" placeholder="Full Name">
+        <input formControlName="title" placeholder="Job Title">
+        <input formControlName="email" placeholder="Email">
+        <input formControlName="phone" placeholder="Phone">
+        <input formControlName="location" placeholder="Location">
+        <input formControlName="website" placeholder="Website">
+
+        <textarea formControlName="about" placeholder="About Me"></textarea>
+
+        <h3>Skills</h3>
+        <div formArrayName="skills">
+            <input *ngFor="let s of skills.controls; let i=index" [formControlName]="i">
+            <button type="button" (click)="addSkill()">+ Skill</button>
+        </div>
+
+        <h3>Experience</h3>
+        <div formArrayName="experience">
+            <div *ngFor="let e of experience.controls; let i=index" [formGroupName]="i">
+                <input formControlName="role" placeholder="Role">
+                <input formControlName="company" placeholder="Company">
+                <input formControlName="duration" placeholder="Duration">
+                <textarea formControlName="description"></textarea>
+            </div>
+            <button type="button" (click)="addExperience()">+ Experience</button>
+        </div>
+
+        <h3>Education</h3>
+        <div formArrayName="education">
+            <div *ngFor="let ed of education.controls; let i=index" [formGroupName]="i">
+                <input formControlName="degree" placeholder="Degree">
+                <input formControlName="institute" placeholder="Institute">
+                <input formControlName="duration" placeholder="Duration">
+                <textarea formControlName="description"></textarea>
+            </div>
+            <button type="button" (click)="addEducation()">+ Education</button>
+        </div>
+        <button class="btn-action">⬇ Download PDF</button>
+        <button class="btn-action">📸 Screenshot</button>
+
+    </form>
+
+    <!-- PREVIEW -->
+    <div class="preview blue" id="cvPreview">
+
+        <aside>
+            <div class="avatar"></div>
+            <h1>{{ cvForm.value.name }}</h1>
+            <h3>{{ cvForm.value.title }}</h3>
+            <p>{{ cvForm.value.email }}</p>
+            <p>{{ cvForm.value.phone }}</p>
+            <p>{{ cvForm.value.location }}</p>
+
+            <h4>Skills</h4>
+            <span *ngFor="let s of cvForm.value.skills">{{ s }}</span>
+        </aside>
+
+        <main>
+            <section>
+                <h2>About Me</h2>
+                <p>{{ cvForm.value.about }}</p>
+            </section>
+
+            <section>
+                <h2>Experience</h2>
+                <div *ngFor="let e of cvForm.value.experience">
+                    <b>{{ e.role }} - {{ e.company }}</b>
+                    <small>{{ e.duration }}</small>
+                    <p>{{ e.description }}</p>
+                </div>
+            </section>
+
+            <section>
+                <h2>Education</h2>
+                <div *ngFor="let ed of cvForm.value.education">
+                    <b>{{ ed.degree }} - {{ ed.institute }}</b>
+                    <small>{{ ed.duration }}</small>
+                    <p>{{ ed.description }}</p>
+                </div>
+            </section>
+        </main>
+
+    </div>
+</div>
