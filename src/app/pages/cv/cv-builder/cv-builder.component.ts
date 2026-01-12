@@ -154,5 +154,40 @@ export class CvBuilderComponent implements OnInit{
       pdf.save('my-cv.pdf');
     });
   }
+  saveCV() {
+    // Example: save CV data to localStorage
+    const cvData = this.cvForm.value;
+    localStorage.setItem('myCV', JSON.stringify(cvData));
+    alert('CV saved locally!');
+  }
+  previewCV() {
+    // Get the CV preview HTML
+    const cvPreview = document.querySelector('.cv-preview') as HTMLElement;
+    if (!cvPreview) return;
+
+    // Open new tab/window
+    const previewWindow = window.open('', '_blank');
+    if (!previewWindow) return;
+
+    // Write the HTML and include current styles
+    const styles = Array.from(document.querySelectorAll('style, link[rel="stylesheet"]'))
+        .map(el => el.outerHTML)
+        .join('');
+
+    previewWindow.document.write(`
+    <html>
+      <head>
+        <title>CV Preview</title>
+        ${styles}
+      </head>
+      <body>
+        ${cvPreview.outerHTML}
+      </body>
+    </html>
+  `);
+
+    previewWindow.document.close();
+  }
+
 
 }

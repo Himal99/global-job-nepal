@@ -53,6 +53,11 @@
     </div>
 
     <div class="actions">
-        <button (click)="confirmSelection()" [disabled]="!selectedTemplate">Use Selected Template</button>
+        <button (click)="confirmSelection()" [disabled]="!selectedTemplate
+  || selectedTemplate == 1 || selectedTemplate == 2">
+            <span *ngIf="selectedTemplate==3">Use Selected Template</span>
+            <span *ngIf="selectedTemplate!==3 && selectedTemplate">Not Available</span>
+            <span *ngIf="!selectedTemplate">Select a template to use</span>
+        </button>
     </div>
 </div>
