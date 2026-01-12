@@ -8,7 +8,7 @@ import {Router} from "@angular/router";
       class="mx-auto mb-10 w-full max-w-60 rounded-2xl bg-gray-50 px-4 py-5 text-center dark:bg-white/[0.03]"
     >
      
-      <a (click)="navToSub()"
+      <a style="background-color: #0A66C2!important;" (click)="navToSub()"
         target="_blank"
         rel="nofollow"
         class="cursor flex items-center justify-center p-3 font-medium text-white rounded-lg bg-brand-500 text-theme-sm hover:bg-brand-600"
