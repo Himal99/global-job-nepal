@@ -5,20 +5,27 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {UserDetailService} from "./user-detail.service";
 import {LoaderComponent} from "../../utils/loader/loader.component";
 import {FooterComponent} from "../../shared/layout/footer/footer.component";
+import {form} from "@angular/forms/signals";
+import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import Editor from "@ckeditor/ckeditor5-build-classic";
 
 @Component({
     selector: 'app-user-detail',
+    standalone: true,
     imports: [
         ReactiveFormsModule,
         NgIf,
         NgForOf,
         LoaderComponent,
-        FooterComponent
+        FooterComponent,
+        CKEditorModule
     ],
     templateUrl: './user-detail.component.html',
     styleUrl: './user-detail.component.css',
 })
 export class UserDetailComponent implements OnInit {
+    Editor: any= ClassicEditor;
     userForm!: FormGroup;
     isEditMode = false;
     email: any;
@@ -256,4 +263,5 @@ export class UserDetailComponent implements OnInit {
     }
 
 
+    protected readonly form = form;
 }

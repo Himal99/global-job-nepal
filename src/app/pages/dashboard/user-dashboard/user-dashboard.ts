@@ -7,6 +7,7 @@ import {FormsModule} from "@angular/forms";
 import {ModalComponent} from "../../../shared/components/ui/modal/modal.component";
 import {CdkDragDrop, CdkDropList, DragDropModule, moveItemInArray} from '@angular/cdk/drag-drop';
 import {FooterComponent} from "../../../shared/layout/footer/footer.component";
+import {ProfileStrengthComponent} from "../../profile-strength/profile-strength.component";
 
 
 @Component({
@@ -21,7 +22,8 @@ import {FooterComponent} from "../../../shared/layout/footer/footer.component";
         CdkDropList,
         NgIf,
         DragDropModule,
-        FooterComponent
+        FooterComponent,
+        ProfileStrengthComponent
     ],
     templateUrl: './user-dashboard.html',
     styleUrl: './user-dashboard.css'

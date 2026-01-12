@@ -29,6 +29,7 @@
     <!--                            <button class="btn btn-secondary">Message</button>-->
                             <button class="btn btn-primary">Contact Info</button>
                             <button (click)="navigateToEditForm()" class="btn btn-secondary">Edit Profile</button>
+                            <button (click)="navigateToEditForm()" class="btn btn-secondary">Generate CV</button>
                         </div>
                     </div>
                 </div>
@@ -238,12 +239,14 @@
 <!--                <li><strong>Experience:</strong> 6+ Years</li>-->
 <!--            </ul>-->
 <!--        </div>-->
-
+        <app-profile-strength></app-profile-strength>
+        <br>
         <div class="card" >
             <div class="section-title">Recent Activity</div>
             <p>🚀 Launched Fast Loan Against Share platform</p>
             <p>💡 Migrated Node.js APIs to Spring Boot</p>
         </div>
+
 
         <div class="card" style="margin-top:20px;">
             <div class="section-title">Featured Projects</div>

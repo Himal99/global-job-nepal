@@ -20,6 +20,11 @@ h3 {
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 14px;
 }
+:host ::ng-deep .ck-editor__editable {
+    min-height: 150px;
+    max-height: 200px;
+    overflow-y: auto;
+}
 
 input, textarea {
     width: 100%;
@@ -79,4 +84,21 @@ button.danger:hover {
 input.ng-invalid.ng-touched,
 textarea.ng-invalid.ng-touched {
     border-color: #dc2626;
+}
+/* Hide image button */
+:host ::ng-deep .ck-toolbar__items button[aria-label*="Image"] {
+    display: none !important;
+}
+
+/* Hide media embed button */
+:host ::ng-deep .ck-toolbar__items button[aria-label*="Media"] {
+    display: none !important;
+}
+
+/* Hide upload button */
+.ck ck-dropdown{
+    display: none !important;
+}
+.ck-button{
+    display: none!important;
 }

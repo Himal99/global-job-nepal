@@ -1,5 +1,5 @@
 <div class="user-form">
-    <h2>User Profile</h2>
+    <h2><strong style="font-family: sans-serif; font-size: small">User Profile :</strong></h2>
 
     <form [formGroup]="userForm" (ngSubmit)="submit()">
 
@@ -35,11 +35,15 @@
 
         <br>
 
-        <label>About</label>
-        <textarea class="pt-3" formControlName="about" placeholder="About You"></textarea>
+        <label><strong style="font-family: sans-serif; font-size: small">About :</strong></label>
+        <ckeditor
+                [editor]="Editor"
+                formControlName="about">
+        </ckeditor>
+
 
         <!-- ADDRESS -->
-        <h3>Address : </h3>
+        <h3><strong style="font-family: sans-serif; font-size: small">Address :</strong>  </h3>
         <div formGroupName="address" class="grid">
            <div>
                <label for="">Country</label>
@@ -62,7 +66,7 @@
           </div>
         </div>
 
-        <h3>Education :</h3>
+        <h3><strong style="font-family: sans-serif; font-size: small">Education :</strong></h3>
 
         <div formArrayName="education" class="pt-3">
 
@@ -129,7 +133,7 @@
         </div>
             <button type="button" (click)="addEducation()">+ Add Education</button>
         </div>
-        <h3>Social Media : </h3>
+        <h3><strong style="font-family: sans-serif; font-size: small">Social Media :</strong> </h3>
 
         <div formArrayName="socialMediaLinks" class="pt-3">
 
@@ -159,7 +163,7 @@
 
                <div>
                    <label for="">Media Link</label>
-                   <input formControlName="link" placeholder="Link">
+                   <input type="text" formControlName="link" placeholder="Link">
                </div>
                <div class="pt-4">
                    <button *ngIf="i!=0" type="button" class="danger btn-sm" (click)="removeMediaLink(i)">
@@ -177,7 +181,7 @@
         </div>
 
         <!-- EXPERIENCE -->
-        <h3>Experience</h3>
+        <h3><strong style="font-family: sans-serif; font-size: small">Experience :</strong></h3>
         <div formArrayName="experience">
             <div  *ngFor="let exp of experience.controls; let i=index"
                  [formGroupName]="i">
@@ -195,8 +199,13 @@
               </div>
                 <div>
 
-                    <label for="">Projects</label>
-                    <textarea formControlName="projects" placeholder="Projects"></textarea>
+                    <label for="">Projects :</label>
+
+                    <ckeditor
+                            [editor]="Editor"
+                            formControlName="projects">
+                    </ckeditor>
+
                 </div>
                 <button type="button" class="danger" (click)="removeExperience(i)">
                     Remove
@@ -207,7 +216,7 @@
         <button type="button" (click)="addExperience()">+ Add Experience</button>
 
         <!-- PROJECTS -->
-        <h3>Projects</h3>
+        <h3><strong style="font-family: sans-serif; font-size: small">Projects :</strong></h3>
         <div formArrayName="projects">
             <div class="card" *ngFor="let p of projects.controls; let i=index"
                  [formGroupName]="i">
@@ -231,7 +240,12 @@
 
               </div>
                 <br>
-                <textarea formControlName="projectDescription" placeholder="Description"></textarea>
+                <label>Project Description</label>
+                <ckeditor
+                        [editor]="Editor"
+                        formControlName="projectDescription">
+                </ckeditor>
+
                 <button type="button" class="danger" (click)="removeProject(i)">
                     Remove
                 </button>
