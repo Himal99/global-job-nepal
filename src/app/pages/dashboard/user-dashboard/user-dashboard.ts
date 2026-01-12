@@ -122,4 +122,8 @@ export class UserDashboard implements OnInit {
                 this.spin = false;
             })
     }
+
+    navigateToCvForm() {
+        this.router.navigate(['/cv'])
+    }
 }

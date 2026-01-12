@@ -1,0 +1,134 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+.cv-container {
+    width: 100%;               /* Full width */
+    max-width: 100%;           /* No max width */
+    margin: 0;                 /* No margin */
+    padding: 25px;             /* Can adjust for page padding */
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    background: #fff;          /* White background for PDF */
+    border-radius: 0;          /* Remove rounded corners */
+    box-shadow: none;          /* Remove shadow */
+    box-sizing: border-box;    /* Include padding in width */
+}
+
+.cv-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.cv-header-left h1 {
+    font-size: 2em;
+    margin: 0;
+    color: #2a4365;
+}
+
+.cv-header-left .title {
+    color: #4a5568;
+    font-size: 1em;
+    margin-top: 5px;
+}
+
+.cv-header-right .profile-pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #2a4365;
+}
+
+.cv-contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.cv-contact p {
+    margin: 0;
+    font-size: 0.95em;
+}
+
+.cv-contact a {
+    color: #2a4365;
+    text-decoration: none;
+}
+
+.custom-info {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.cv-section {
+    margin-bottom: 25px;
+}
+
+.cv-section h2 {
+    font-size: 1.3em;
+    color: #2a4365;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.skills-list li {
+    background: #e0f0ff;
+    color: #2a4365;
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-size: 0.9em;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.experience-item, .education-item {
+    margin-bottom: 15px;
+}
+
+.experience-item h3, .education-item h3 {
+    margin: 0;
+    font-size: 1.1em;
+    color: #2a4365;
+}
+
+.date {
+    font-size: 0.85em;
+    color: #718096;
+}
+
+p {
+    margin: 5px 0 0;
+    line-height: 1.5;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .cv-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .cv-header-right .profile-pic {
+        width: 80px;
+        height: 80px;
+    }
+}

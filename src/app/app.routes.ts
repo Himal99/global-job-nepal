@@ -27,6 +27,10 @@ import {PrepareLoksewaComponent} from "./loksewa/prepare-loksewa/prepare-loksewa
 import {FaqComponent} from "./pages/faq/faq.component";
 import {LoksewaNewsComponent} from "./loksewa/loksewa-news/loksewa-news.component";
 import {UserDetailComponent} from "./pages/user-detail/user-detail.component";
+import {CvComponent} from "./pages/cv/cv.component";
+import {Cv3Component} from "./pages/cv/cv3/cv3.component";
+import {CvGeneratorComponent} from "./pages/cv/cv-generator/cv-generator.component";
+import {MyFilesComponent} from "./pages/my-files/my-files.component";
 
 export const routes: Routes = [
   {
@@ -46,6 +50,30 @@ export const routes: Routes = [
         pathMatch: 'full',
         title:
           'Udaan | Dashboard',
+        canActivate:[authGuard]
+      },
+      {
+        path: 'cv',
+        component: CvComponent,
+        pathMatch: 'full',
+        title:
+            'Udaan | Dashboard',
+        canActivate:[authGuard]
+      },
+      {
+        path: 'my-files',
+        component: MyFilesComponent,
+        pathMatch: 'full',
+        title:
+            'Udaan | Dashboard',
+        canActivate:[authGuard]
+      },
+      {
+        path: 'cv-generator/:id',
+        component: CvGeneratorComponent,
+        pathMatch: 'full',
+        title:
+            'Udaan | Dashboard',
         canActivate:[authGuard]
       },
       {

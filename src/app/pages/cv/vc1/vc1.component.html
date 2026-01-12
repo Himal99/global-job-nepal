@@ -1,0 +1,61 @@
+<div class="cv-container">
+
+    <!-- HEADER -->
+    <div class="cv-header">
+        <div class="cv-header-left">
+            <h1>{{ user.name }}</h1>
+            <p class="title">{{ user.title }}</p>
+        </div>
+        <div class="cv-header-right">
+            <img *ngIf="user.profilePicture" [src]="user.profilePicture" alt="Profile Picture" class="profile-pic">
+        </div>
+    </div>
+
+    <!-- CONTACT INFO -->
+    <div class="cv-contact">
+        <p *ngIf="user.email"><i class="fa-solid fa-envelope"></i> {{ user.email }}</p>
+        <p *ngIf="user.phone"><i class="fa-solid fa-phone"></i> {{ user.phone }}</p>
+        <p *ngIf="user.address"><i class="fa-solid fa-location-dot"></i> {{ user.address }}</p>
+        <p *ngIf="user.website"><i class="fa-solid fa-globe"></i> <a href="{{ user.website }}" target="_blank">{{ user.website }}</a></p>
+        <p *ngIf="user.customFields?.length">
+      <span *ngFor="let field of user.customFields" class="custom-info">
+        <strong>{{ field.label }}:</strong> {{ field.value }}
+      </span>
+        </p>
+    </div>
+
+    <!-- ABOUT -->
+    <div *ngIf="user.about" class="cv-section">
+        <h2><i class="fa-solid fa-user"></i> About Me</h2>
+        <p>{{ user.about }}</p>
+    </div>
+
+    <!-- SKILLS -->
+    <div *ngIf="user.skills?.length" class="cv-section">
+        <h2><i class="fa-solid fa-lightbulb"></i> Skills</h2>
+        <ul class="skills-list">
+            <li *ngFor="let skill of user.skills"><i class="fa-solid fa-check"></i> {{ skill }}</li>
+        </ul>
+    </div>
+
+    <!-- EXPERIENCE -->
+    <div *ngIf="user.experience?.length" class="cv-section">
+        <h2><i class="fa-solid fa-briefcase"></i> Experience</h2>
+        <div *ngFor="let exp of user.experience" class="experience-item">
+            <h3>{{ exp.position }} - {{ exp.company }}</h3>
+            <span class="date">{{ exp.startDate }} - {{ exp.endDate || 'Present' }}</span>
+            <p>{{ exp.description }}</p>
+        </div>
+    </div>
+
+    <!-- EDUCATION -->
+    <div *ngIf="user.education?.length" class="cv-section">
+        <h2><i class="fa-solid fa-graduation-cap"></i> Education</h2>
+        <div *ngFor="let edu of user.education" class="education-item">
+            <h3>{{ edu.degree }} - {{ edu.institution }}</h3>
+            <span class="date">{{ edu.startDate }} - {{ edu.endDate || 'Present' }}</span>
+            <p>{{ edu.description }}</p>
+        </div>
+    </div>
+
+</div>

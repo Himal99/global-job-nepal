@@ -1,0 +1,58 @@
+<div class="template-selector-container">
+
+    <div class="template-selector-grid">
+        <!-- Templates List -->
+        <div class="templates-list">
+            <div
+                    class="template-card"
+                    *ngFor="let template of templates"
+                    [class.selected]="selectedTemplate === template.id"
+                    (click)="selectTemplate(template.id)"
+                    (mouseenter)="hoverTemplate(template.id)"
+                    (mouseleave)="hoverTemplate(null)"
+            >
+                <div class="template-preview">
+                    <img [src]="template.previewImage" alt="{{ template.name }}" />
+                  </div>
+                <div class="template-info">
+                    <h3>{{ template.name }}</h3>
+                </div>
+            </div>
+
+            <div  class="template-card"
+            >
+                <div class="template-preview">
+                    <img [src]="'/images/logo/commingsun.png'" alt="commin soon" />
+                </div>
+                <div class="template-info">
+                    <h3>More Template</h3>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Live Preview -->
+        <div class="template-preview-container">
+
+            <div class="live-preview">
+                <ng-container *ngIf="hoveredTemplate || selectedTemplate">
+                    <img
+                            [src]="getPreviewImage()"
+                            alt="CV Preview"
+                    />
+                </ng-container>
+                <ng-container *ngIf="!hoveredTemplate && !selectedTemplate">
+                    <p>Hover a template to preview it</p>
+                </ng-container>
+            </div>
+        </div>
+
+        <!-- Coming Soon Box -->
+
+
+    </div>
+
+    <div class="actions">
+        <button (click)="confirmSelection()" [disabled]="!selectedTemplate">Use Selected Template</button>
+    </div>
+</div>
