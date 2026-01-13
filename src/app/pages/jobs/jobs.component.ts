@@ -6,6 +6,7 @@ import {DatePipe, NgForOf, NgIf} from "@angular/common";
 import {debounceTime, Subject} from "rxjs";
 import {InfiniteScrollDirective} from "ngx-infinite-scroll";
 import {Router} from "@angular/router";
+import {ChatbotComponent} from "../chatbot/chatbot.component";
 
 @Component({
   selector: 'app-jobs',
@@ -15,7 +16,8 @@ import {Router} from "@angular/router";
         NgForOf,
         DatePipe,
         NgIf,
-        InfiniteScrollDirective
+        InfiniteScrollDirective,
+        ChatbotComponent
     ],
   templateUrl: './jobs.component.html',
   styleUrl: './jobs.component.css',

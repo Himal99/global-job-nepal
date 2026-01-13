@@ -1,0 +1,21 @@
+<div class="chatbot-container">
+    <div class="chatbot-icon" (click)="toggleChat()">🤖</div>
+
+    <div class="chat-window" [class.open]="isOpen">
+        <div class="chat-header">
+            Robot Assistant
+            <button class="close-btn" (click)="toggleChat()">&times;</button>
+        </div>
+
+        <div class="chat-body" #chatBody>
+            <div *ngFor="let msg of messages" [ngClass]="{'message': true, 'bot': msg.sender==='bot', 'user': msg.sender==='user'}">
+                {{ msg.text }}
+            </div>
+        </div>
+
+        <div class="chat-footer">
+            <input type="text" placeholder="Type a message" [(ngModel)]="userInput" (keydown.enter)="sendMessage()">
+            <button (click)="sendMessage()">Send</button>
+        </div>
+    </div>
+</div>

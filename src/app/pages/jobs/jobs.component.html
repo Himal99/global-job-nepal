@@ -250,8 +250,9 @@
           {{ job.createdAt | date:'mediumDate' }}
       </span>
 
-                <a
-                        class="apply-btn cursor"
+                <a class="cursor"
+                   style="color: #0A66C2"
+
                         (click)="detail()"
                         target="_blank">
                     View Detail
@@ -278,3 +279,4 @@
 <app-loader [show]="spin"></app-loader>
 
 
+<app-chatbot></app-chatbot>
