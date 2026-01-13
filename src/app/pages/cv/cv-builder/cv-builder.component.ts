@@ -1,17 +1,18 @@
 import {Component, OnInit} from '@angular/core';
-import {FormArray, FormBuilder, FormGroup, ReactiveFormsModule} from "@angular/forms";
+import {FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgClass, NgForOf, NgIf} from "@angular/common";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 
 @Component({
   selector: 'app-cv-builder',
-  imports: [
-    NgForOf,
-    ReactiveFormsModule,
-    NgIf,
-    NgClass
-  ],
+    imports: [
+        NgForOf,
+        ReactiveFormsModule,
+        NgIf,
+        NgClass,
+        FormsModule
+    ],
   templateUrl: './cv-builder.component.html',
   styleUrl: './cv-builder.component.css',
 })
@@ -54,6 +55,12 @@ export class CvBuilderComponent implements OnInit{
     this.cvForm.valueChanges.subscribe(() => {
       this.calculateCompletion();
     });
+
+    const savedTheme = localStorage.getItem('cvTheme');
+    if (savedTheme) {
+      this.theme = JSON.parse(savedTheme);
+      this.applyTheme();
+    }
   }
 
   // ----- Form Groups -----
@@ -435,5 +442,30 @@ export class CvBuilderComponent implements OnInit{
     this.calculateCompletion();
     this.lastSaved = null;
   }
+// Theme defaults
+  themePopupOpen = false;
+
+  toggleThemePopup() {
+    this.themePopupOpen = !this.themePopupOpen;
+  }
+
+// Theme defaults
+  theme = {
+    sidebarBg: '#2F4A6D',
+    textColor: '#FFFFFF',
+    accentColor: '#FFFFFF'
+  };
+
+  applyTheme() {
+    document.documentElement.style.setProperty('--sidebar-bg', this.theme.sidebarBg);
+    document.documentElement.style.setProperty('--text-color', this.theme.textColor);
+    document.documentElement.style.setProperty('--accent-color', this.theme.accentColor);
+
+    // Save theme in localStorage
+    localStorage.setItem('cvTheme', JSON.stringify(this.theme));
+  }
+
+
+
 
 }

@@ -154,7 +154,7 @@ i { margin-right: 6px; opacity: 0.9; }
 .cv-toolbar-vertical {
     position: fixed;
     right: 20px;
-    top: 50%;
+    top: 38%;
     transform: translateY(-50%);
     display: flex;
     flex-direction: column;
@@ -326,4 +326,88 @@ i { margin-right: 6px; opacity: 0.9; }
     user-select: none;
     z-index: 0; /* behind CV content */
     white-space: nowrap;
+}
+/* Sidebar */
+.sidebar {
+    background-color: var(--sidebar-bg, #2F4A6D);
+    color: var(--text-color, #111827);
+}
+
+/* Main content */
+.content {
+    color: var(--text-color, #111827);
+}
+
+/* Accent (skills, progress bar, links, icons) */
+.skill-badge,
+.project-link,
+.progress-fill {
+    background-color: var(--accent-color, #2563EB);
+    color: #fff;
+}
+.theme-btn-container {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 999;
+}
+
+.theme-btn {
+    background: #2563EB;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    position: relative;
+}
+
+.theme-btn .tooltip {
+    position: absolute;
+    top: -25px;
+    right: 50%;
+    transform: translateX(50%);
+    background: #111827;
+    color: #fff;
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    opacity: 0;
+    transition: 0.2s;
+    pointer-events: none;
+}
+
+.theme-btn:hover .tooltip {
+    opacity: 1;
+}
+
+/* Popup */
+.theme-popup {
+    position: absolute;
+    bottom: 60px;
+    right: 0;
+    background: #fff;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.theme-popup h4 {
+    margin: 0 0 8px 0;
+    font-size: 14px;
+    text-align: center;
+}
+
+.theme-popup input[type="color"] {
+    width: 100%;
+    height: 30px;
+    border: none;
+    cursor: pointer;
 }
