@@ -1,7 +1,21 @@
 
+<!-- CV Progress Bar -->
+<div class="cv-progress">
+    <span>{{ completionPercentage }}% completed</span>
+
+    <div class="progress-track">
+        <div
+                class="progress-fill"
+                [ngClass]="progressColor"
+                [style.width.%]="completionPercentage">
+        </div>
+    </div>
+</div>
+
 
 
 <div class="cv-builder" *ngIf="cvForm">
+    <!-- CV Completion Progress -->
 
     <!-- ================= FORM ================= -->
     <form class="cv-form" [formGroup]="cvForm">

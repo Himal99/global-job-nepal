@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormGroup, ReactiveFormsModule} from "@angular/forms";
-import {NgForOf, NgIf} from "@angular/common";
+import {NgClass, NgForOf, NgIf} from "@angular/common";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 
@@ -9,7 +9,8 @@ import jsPDF from "jspdf";
   imports: [
     NgForOf,
     ReactiveFormsModule,
-    NgIf
+    NgIf,
+    NgClass
   ],
   templateUrl: './cv-builder.component.html',
   styleUrl: './cv-builder.component.css',
@@ -47,6 +48,11 @@ export class CvBuilderComponent implements OnInit{
         linkedin: ['https://linkedin.com/in/himalrai'],
         github: ['https://github.com/himalrai']
       })
+    });
+
+    this.calculateCompletion();
+    this.cvForm.valueChanges.subscribe(() => {
+      this.calculateCompletion();
     });
   }
 
@@ -264,5 +270,69 @@ export class CvBuilderComponent implements OnInit{
       document.body.removeChild(textArea);
     }
   }
+  calculateCompletion() {
+    let total = 0;
+    let filled = 0;
 
+    const count = (v: any) => {
+      total++;
+      if (v && v.toString().trim().length > 0) filled++;
+    };
+
+    const v = this.cvForm.value;
+
+    // Personal
+    count(v.name);
+    count(v.title);
+    count(v.email);
+    count(v.phone);
+    count(v.location);
+    count(v.website);
+    count(v.about);
+
+    // Skills
+    v.skills?.forEach((s: string) => count(s));
+
+    // Experience
+    v.experience?.forEach((e: any) => {
+      count(e.role);
+      count(e.company);
+      count(e.duration);
+      count(e.description);
+    });
+
+    // Education
+    v.education?.forEach((e: any) => {
+      count(e.degree);
+      count(e.institute);
+      count(e.duration);
+      count(e.description);
+    });
+
+    // Projects
+    v.projects?.forEach((p: any) => {
+      count(p.name);
+      count(p.tech);
+      count(p.description);
+      count(p.link);
+    });
+
+    // Additional
+    count(v.additional?.languages);
+    count(v.additional?.hobbies);
+    count(v.additional?.certifications);
+    count(v.additional?.linkedin);
+    count(v.additional?.github);
+
+    this.completionPercentage = Math.round((filled / total) * 100);
+
+    // COLOR LOGIC
+    if (this.completionPercentage < 40) this.progressColor = 'low';
+    else if (this.completionPercentage < 75) this.progressColor = 'medium';
+    else this.progressColor = 'high';
+
+  }
+  progressColor = 'low';
+  completionPercentage = 0;
+  missingSuggestions: string[] = [];
 }
