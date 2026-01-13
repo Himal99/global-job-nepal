@@ -330,9 +330,110 @@ export class CvBuilderComponent implements OnInit{
     if (this.completionPercentage < 40) this.progressColor = 'low';
     else if (this.completionPercentage < 75) this.progressColor = 'medium';
     else this.progressColor = 'high';
+    this.completionPercentage = Math.round((filled / total) * 100);
+
+    if (this.completionPercentage < 40) this.progressColor = 'low';
+    else if (this.completionPercentage < 75) this.progressColor = 'medium';
+    else this.progressColor = 'high';
+
+    this.isCompleted = this.completionPercentage === 100;
+    this.canDownloadPdf = this.completionPercentage >= 70;
 
   }
   progressColor = 'low';
   completionPercentage = 0;
   missingSuggestions: string[] = [];
+  isCompleted = false;
+  canDownloadPdf = false;
+  lastSaved: string | null = null;
+
+  saveProgress(showAlert = true) {
+    const cvData = this.cvForm.value;
+    localStorage.setItem('cvProgress', JSON.stringify(cvData));
+
+    // Update last saved time
+    const now = new Date();
+    this.lastSaved = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+
+  }
+
+
+  resetCV() {
+    // Optional: Confirm reset
+    const confirmReset = confirm('Are you sure you want to reset all fields? This cannot be undone.');
+    if (!confirmReset) return;
+
+    // Reset form to initial empty/default values
+    this.cvForm.reset({
+      name: '',
+      title: '',
+      email: '',
+      phone: '',
+      location: '',
+      website: '',
+      about: '',
+      skills: [],
+      experience: [],
+      education: [],
+      projects: [],
+      additional: {
+        languages: '',
+        hobbies: '',
+        certifications: '',
+        linkedin: '',
+        github: ''
+      }
+    });
+
+    // Clear form arrays manually
+    this.clearFormArray(this.skills);
+    this.clearFormArray(this.experience);
+    this.clearFormArray(this.education);
+    this.clearFormArray(this.projects);
+
+    // Reset progress
+    this.calculateCompletion();
+    this.lastSaved = null;
+
+    // Remove saved progress from localStorage
+    localStorage.removeItem('cvProgress');
+  }
+
+// Utility to clear FormArray
+  clearFormArray(formArray: any) {
+    while (formArray.length !== 0) {
+      formArray.removeAt(0);
+    }
+  }
+  resetSection(section: string) {
+
+    switch(section) {
+      case 'skills':
+        this.clearFormArray(this.skills);
+        break;
+      case 'experience':
+        this.clearFormArray(this.experience);
+        break;
+      case 'education':
+        this.clearFormArray(this.education);
+        break;
+      case 'projects':
+        this.clearFormArray(this.projects);
+        break;
+      case 'additional':
+        this.cvForm.get('additional')?.reset({
+          languages: '',
+          hobbies: '',
+          certifications: '',
+          linkedin: '',
+          github: ''
+        });
+        break;
+    }
+
+    this.calculateCompletion();
+    this.lastSaved = null;
+  }
+
 }
