@@ -1,12 +1,13 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
-import {NgClass} from "@angular/common";
+import {NgClass, NgForOf} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-chatbot',
   imports: [
     NgClass,
-    FormsModule
+    FormsModule,
+    NgForOf
   ],
   templateUrl: './chatbot.component.html',
   styleUrl: './chatbot.component.css',

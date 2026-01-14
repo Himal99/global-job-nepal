@@ -192,3 +192,75 @@ body { background-color: #F9FAFB; color: #1f2937; }
 }
 .cdk-drag-placeholder { opacity:0.4; }
 .cdk-drag-animating { transition: transform 250ms cubic-bezier(0,0,0.2,1); }
+.chatbot-card {
+    background: linear-gradient(135deg, #eef2ff, #f8fafc);
+    border-radius: 18px;
+    padding: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+    width: 100%;
+}
+
+.chatbot-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+
+.bot-icon {
+    width: 44px;
+    height: 44px;
+    background: #2563eb;
+    color: #fff;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.bot-title {
+    font-weight: 600;
+    font-size: 15px;
+    color: #111827;
+}
+
+.bot-subtitle {
+    font-size: 12px;
+    color: #6b7280;
+}
+
+.chatbot-actions {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.bot-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px;
+    border-radius: 12px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.25s ease;
+}
+
+.bot-btn i {
+    font-size: 14px;
+}
+
+.bot-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.18);
+}
+
+/* Brand Colors */
+.linkedin  { background: #0a66c2; }
+.github    { background: #1f2937; }
+.twitter   { background: #1da1f2; }
+.portfolio { background: #2563eb; }

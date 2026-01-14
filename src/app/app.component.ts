@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import {ChatbotComponent} from "./pages/chatbot/chatbot.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [
-    RouterModule,
-  ],
+    imports: [
+        RouterModule,
+        ChatbotComponent,
+    ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })

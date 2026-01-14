@@ -1,0 +1,75 @@
+<div class="quiz-page">
+
+
+
+    <!-- PROGRESS BAR -->
+    <div class="progress-bar">
+        <div class="progress-fill" [style.width.%]="progress"></div>
+    </div>
+
+    <!-- QUIZ CONTENT -->
+    <main class="quiz-content" *ngIf="!quizFinished && !showReview">
+        <h3>Question {{ currentIndex + 1 }} / {{ questions.length }}</h3>
+
+        <div class="question-card">
+            <p class="question-text">
+                {{ questions[currentIndex].question }}
+            </p>
+
+            <div class="options">
+                <button
+                        *ngFor="let opt of questions[currentIndex].options; let i = index"
+                        (click)="selectOption(i)"
+                        [class.correct]="showAnswer && i === questions[currentIndex].correctAnswer"
+                        [class.wrong]="showAnswer && selectedOption === i && i !== questions[currentIndex].correctAnswer">
+                    {{ opt }}
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- RESULT -->
+    <div class="result" *ngIf="quizFinished && !showReview">
+        <h2>✅ Quiz Completed</h2>
+        <p>Total Questions: {{ questions.length }}</p>
+        <p>Correct Answers: {{ score }}</p>
+        <p class="percentage">Score: {{ percentage }}%</p>
+
+        <button (click)="showReviewPage()">Review Answers</button>
+        <button (click)="restartQuiz()">Restart Quiz</button>
+    </div>
+
+    <!-- REVIEW PAGE -->
+    <!-- REVIEW PAGE -->
+    <div class="review" *ngIf="showReview">
+        <h2>📋 Answer Review</h2>
+
+        <div class="review-grid">
+            <div class="review-card" *ngFor="let a of answers; let i = index">
+                <h4>Q{{ i + 1 }}</h4>
+                <p class="review-question">{{ a.question }}</p>
+
+                <ul>
+                    <li *ngFor="let opt of a.options; let j = index"
+                        [class.correct]="j === a.correctAnswer"
+                        [class.wrong]="j === a.selectedAnswer && j !== a.correctAnswer">
+
+                        {{ opt }}
+
+                        <!-- Correct Answer Badge -->
+                        <span *ngIf="j === a.correctAnswer" class="badge correct-badge">✔ Correct</span>
+
+                        <!-- Your Wrong Answer Badge -->
+                        <span *ngIf="j === a.selectedAnswer && j !== a.correctAnswer" class="badge wrong-badge">✖ Your Answer</span>
+
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+
+        <button (click)="restartQuiz()">Start New Quiz</button>
+    </div>
+
+
+</div>

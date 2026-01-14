@@ -3,14 +3,16 @@ import {LoksewaService} from "../service/loksewa.service";
 import {NgForOf} from "@angular/common";
 import {LoaderComponent} from "../../utils/loader/loader.component";
 import {FormsModule} from "@angular/forms";
+import {ChatbotComponent} from "../../pages/chatbot/chatbot.component";
 
 @Component({
   selector: 'app-loksewa-news',
-  imports: [
-    NgForOf,
-    LoaderComponent,
-    FormsModule
-  ],
+    imports: [
+        NgForOf,
+        LoaderComponent,
+        FormsModule,
+        ChatbotComponent
+    ],
   templateUrl: './loksewa-news.component.html',
   styleUrl: './loksewa-news.component.css',
 })

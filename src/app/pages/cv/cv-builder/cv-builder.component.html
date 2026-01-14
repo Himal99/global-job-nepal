@@ -225,98 +225,70 @@
                     </a>
                 </div>
             </section>
-            <div class="cv-toolbar">
+            <div class="cv-toolbar-bottom" style="padding-left: 1000px">
 
-                <div class="cv-toolbar-vertical">
+                <button  class="toolbar-btn" (click)="captureScreenshot()">
+                    📸
+                    <span class="tooltip">Take Screenshot</span>
+                </button>
 
-                    <button class="toolbar-btn" (click)="captureScreenshot()">
-                        📸
-                        <span class="tooltip">Take Screenshot</span>
-                    </button>
-
-                    <div class="toolbar-btn-wrapper">
-
-                        <button
-                                class="toolbar-btn"
-                                [class.disabled]="!canDownloadPdf"
-                                (click)="canDownloadPdf && downloadPDF()">
-
-                            📄
-                            <span class="tooltip">
+                <button
+                        class="toolbar-btn"
+                        [class.disabled]="!canDownloadPdf"
+                        (click)="canDownloadPdf && downloadPDF()">
+                    📄
+                    <span class="tooltip">
             {{ canDownloadPdf ? 'Download PDF' : 'Complete 70% to unlock PDF' }}
         </span>
-                        </button>
+                </button>
 
-                    </div>
+                <button
+                        class="toolbar-btn"
+                        [class.disabled]="!canDownloadPdf"
+                        (click)="canDownloadPdf && saveCV()">
+                    💾
+                    <span class="tooltip">
+            {{ canDownloadPdf ? 'Save CV' : 'Complete 70% to unlock' }}
+        </span>
+                </button>
 
+                <button class="toolbar-btn" (click)="previewCV()">
+                    👁️
+                    <span class="tooltip">Preview CV</span>
+                </button>
 
-                    <!-- SAVE -->
-                    <button
-                            class="toolbar-btn"
-                            [class.disabled]="!canDownloadPdf"
-                            (click)="canDownloadPdf && saveCV()">
+                <button
+                        class="toolbar-btn"
+                        [class.disabled]="!canDownloadPdf"
+                        (click)="canDownloadPdf && shareCV()">
+                    🔗
+                    <span class="tooltip">
+            {{ canDownloadPdf ? 'Share CV' : 'Complete 70% to unlock' }}
+        </span>
+                </button>
 
-                        💾
-                        <span class="tooltip">
-        {{ canDownloadPdf ? 'Save CV' : 'Complete 70% to unlock' }}
-    </span>
-                    </button>
+                <button
+                        class="toolbar-btn"
+                        [class.disabled]="!canDownloadPdf"
+                        (click)="canDownloadPdf && copyLink()">
+                    📋
+                    <span class="tooltip">
+            {{ canDownloadPdf ? 'Copy CV Link' : 'Complete 70% to unlock' }}
+        </span>
+                </button>
 
-                    <!-- PREVIEW -->
-                    <button
-                            class="toolbar-btn"
+                <button class="toolbar-btn" (click)="saveProgress()">
+                    💾
+                    <span class="tooltip">Save Progress</span>
+                </button>
 
-                            (click)=" previewCV()">
-
-                        👁️
-                        <span class="tooltip">
-        {{ 'Preview CV'  }}
-    </span>
-                    </button>
-
-                    <!-- SHARE -->
-                    <button
-                            class="toolbar-btn"
-                            [class.disabled]="!canDownloadPdf"
-                            (click)="canDownloadPdf && shareCV()">
-
-                        🔗
-                        <span class="tooltip">
-        {{ canDownloadPdf ? 'Share CV' : 'Complete 70% to unlock' }}
-    </span>
-                    </button>
-
-                    <!-- COPY LINK -->
-                    <button
-                            class="toolbar-btn"
-                            [class.disabled]="!canDownloadPdf"
-                            (click)="canDownloadPdf && copyLink()">
-
-                        📋
-                        <span class="tooltip">
-        {{ canDownloadPdf ? 'Copy CV Link' : 'Complete 70% to unlock' }}
-    </span>
-                    </button>
-
-                    <button
-                            class="toolbar-btn"
-                            (click)="saveProgress()"
-                            title="Save Progress">
-                        💾
-                        <span class="tooltip">Save Progress</span>
-                    </button>
-                    <button
-                            class="toolbar-btn"
-                            (click)="resetCV()"
-                            title="Reset CV Fields">
-                        ♻️
-                        <span class="tooltip">Reset CV</span>
-                    </button>
-
-                </div>
-
+                <button class="toolbar-btn" (click)="resetCV()">
+                    ♻️
+                    <span class="tooltip">Reset CV</span>
+                </button>
 
             </div>
+
 
 
 

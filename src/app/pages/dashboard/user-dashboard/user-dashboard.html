@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile | Professional Network</title>
-
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 </head>
 <body>
 
@@ -425,13 +426,38 @@
             <a href="resume.pdf" download class="resume-btn">📄 Download Resume</a>
         </div>
 
-        <div class="card" style="margin-top:20px;">
-            <div class="section-title">Social Links</div>
-            <a href="#" style="display:block; background:#0a66c2; color:#fff; padding:10px; border-radius:6px; text-align:center; margin-bottom:6px;">LinkedIn</a>
-            <a href="#" style="display:block; background:#333; color:#fff; padding:10px; border-radius:6px; text-align:center; margin-bottom:6px;">GitHub</a>
-            <a href="#" style="display:block; background:#1da1f2; color:#fff; padding:10px; border-radius:6px; text-align:center; margin-bottom:6px;">Twitter</a>
-            <a href="#" style="display:block; background:#2563eb; color:#fff; padding:10px; border-radius:6px; text-align:center;">Portfolio</a>
+        <div class="chatbot-card">
+            <div class="chatbot-header">
+                <div class="bot-icon">🤖</div>
+                <div>
+                    <div class="bot-title">Assistant</div>
+                    <div class="bot-subtitle">Connect with me</div>
+                </div>
+            </div>
+
+            <div class="chatbot-actions">
+                <a href="#" class="bot-btn linkedin">
+                    <i class="fab fa-linkedin-in"></i>
+                    LinkedIn
+                </a>
+
+                <a href="#" class="bot-btn github">
+                    <i class="fab fa-github"></i>
+                    GitHub
+                </a>
+
+                <a href="#" class="bot-btn twitter">
+                    <i class="fab fa-twitter"></i>
+                    Twitter
+                </a>
+
+                <a href="#" class="bot-btn portfolio">
+                    <i class="fas fa-globe"></i>
+                    Portfolio
+                </a>
+            </div>
         </div>
+
     </div>
 </div>
 <app-loader [show]="false"></app-loader>

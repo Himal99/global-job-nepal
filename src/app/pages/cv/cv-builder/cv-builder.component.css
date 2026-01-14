@@ -185,30 +185,10 @@ i { margin-right: 6px; opacity: 0.9; }
     transform: scale(1.1);
 }
 
-/* Tooltip Label */
-.toolbar-btn .tooltip {
-    visibility: hidden;
-    opacity: 0;
-    position: absolute;
-    right: 120%;           /* place tooltip to the left of the button */
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: #1e40af;
-    color: #fff;
-    padding: 4px 8px;
-    border-radius: 4px;
-    white-space: nowrap;
-    font-size: 12px;
-    pointer-events: none;
-    transition: all 0.2s;
-    z-index: 1001;
-}
+
 
 /* Show tooltip on hover */
-.toolbar-btn:hover .tooltip {
-    visibility: visible;
-    opacity: 1;
-}
+
 .cv-progress-wrapper {
     position: sticky;
     top: 0;
@@ -350,6 +330,7 @@ i { margin-right: 6px; opacity: 0.9; }
     right: 20px;
     bottom: 20px;
     z-index: 999;
+    padding-bottom: 170px;
 }
 
 .theme-btn {
@@ -364,24 +345,7 @@ i { margin-right: 6px; opacity: 0.9; }
     position: relative;
 }
 
-.theme-btn .tooltip {
-    position: absolute;
-    top: -25px;
-    right: 50%;
-    transform: translateX(50%);
-    background: #111827;
-    color: #fff;
-    font-size: 12px;
-    padding: 2px 6px;
-    border-radius: 4px;
-    opacity: 0;
-    transition: 0.2s;
-    pointer-events: none;
-}
 
-.theme-btn:hover .tooltip {
-    opacity: 1;
-}
 
 /* Popup */
 .theme-popup {
@@ -410,4 +374,270 @@ i { margin-right: 6px; opacity: 0.9; }
     height: 30px;
     border: none;
     cursor: pointer;
+}
+.cv-toolbar-right {
+    position: fixed;       /* Fixed on screen */
+    top: 50%;              /* Center vertically */
+    right: 0;              /* Stick to right edge */
+    transform: translateY(-50%); /* Center vertically properly */
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically */
+    align-items: center;
+    gap: 10px;             /* Space between buttons */
+    z-index: 1000;         /* On top of everything */
+    background: transparent; /* No background */
+}
+
+.toolbar-btn {
+    background: #007bff;   /* Button color */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 14px;
+    cursor: pointer;
+    font-size: 18px;
+    position: relative;
+}
+
+.toolbar-btn.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+
+
+.cv-toolbar-bottom {
+    position: fixed;      /* Stay at the bottom */
+    bottom: 0;
+    left: 0;
+    width: 100%;          /* Full width */
+    display: flex;
+    justify-content: center; /* Center buttons horizontally */
+    align-items: center;
+    padding: 10px 0;
+    gap: 10px;            /* Space between buttons */
+    z-index: 1000;        /* On top of content */
+    background: transparent; /* No background */
+    border-top: none;        /* Remove top border */
+}
+
+.toolbar-btn {
+    background: #007bff;  /* Button color */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 14px;
+    cursor: pointer;
+    font-size: 18px;
+    position: relative;
+}
+
+.toolbar-btn.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.toolbar-btn {
+    background: #007bff;   /* Button color */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 14px;
+    cursor: pointer;
+    font-size: 18px;
+    position: relative;    /* Needed for tooltip positioning */
+}
+
+
+/* ============================= */
+/* TOOLBAR CONTAINERS */
+/* ============================= */
+
+/* Horizontal Bottom Toolbar */
+.cv-toolbar-bottom {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;   /* Center buttons horizontally */
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    z-index: 1000;
+    background: transparent;
+}
+
+/* Vertical Right Toolbar */
+.cv-toolbar-right {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    z-index: 1000;
+    background: transparent;
+}
+
+/* ============================= */
+/* TOOLBAR BUTTONS */
+/* ============================= */
+.toolbar-btn {
+    position: relative;        /* Needed for tooltip positioning */
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 14px;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s;
+}
+
+.toolbar-btn:hover {
+    background: #1e40af;
+    transform: scale(1.1);
+}
+
+.toolbar-btn.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* ============================= */
+/* TOOLTIP */
+/* ============================= */
+
+/* Tooltip for bottom toolbar (appears above) */
+
+/* Toolbar button */
+.toolbar-btn {
+    position: relative;      /* Important: tooltip is positioned relative to button */
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 14px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+:host {
+    display: block;
+    width: 100%;
+}
+
+/* =============================
+   CV Builder Layout
+============================= */
+.cv-builder {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    height: 100vh;
+    background: #e5e7eb;
+}
+
+/* =============================
+   Toolbar Buttons Base
+============================= */
+.toolbar-btn {
+    position: relative;         /* Tooltip is relative to button */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 14px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.toolbar-btn:hover {
+    background: #1e40af;
+    transform: scale(1.1);
+}
+
+.toolbar-btn.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* =============================
+   Tooltip Base
+============================= */
+.toolbar-btn .tooltip {
+    position: absolute;
+    background: #333;
+    color: #fff;
+    padding: 4px 8px;
+    font-size: 12px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.2s;
+    z-index: 1000;
+}
+
+.toolbar-btn:hover .tooltip {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* =============================
+   Bottom Toolbar
+============================= */
+.cv-toolbar-bottom {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    z-index: 1000;
+    background: transparent;
+}
+
+/* Tooltip for bottom toolbar (appears above button) */
+.cv-toolbar-bottom .toolbar-btn .tooltip {
+    bottom: 120%;   /* float above button */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* =============================
+   Right Toolbar
+============================= */
+.cv-toolbar-right {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    z-index: 1000;
+    background: transparent;
+}
+
+/* Tooltip for right toolbar (appears to the left of button) */
+.cv-toolbar-right .toolbar-btn .tooltip {
+    right: 120%;    /* float left of button */
+    top: 50%;
+    transform: translateY(-50%);
 }
