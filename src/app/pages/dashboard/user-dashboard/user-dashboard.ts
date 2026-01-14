@@ -144,4 +144,24 @@ export class UserDashboard implements OnInit {
     navigateToCvForm() {
         this.router.navigate(['/cv'])
     }
+
+
+    ngAfterViewInit() {
+        this.countUp('.count-up', [this.profileViews, this.jobViews, this.searchAppearances]);
+    }
+
+    countUp(selector: string, values: number[]) {
+        const elements = document.querySelectorAll(selector);
+        elements.forEach((el, i) => {
+            let start = 0;
+            const end = values[i] || parseInt(el.textContent || '0', 10);
+            const duration = 1000;
+            const stepTime = Math.abs(Math.floor(duration / end));
+            const timer = setInterval(() => {
+                start += 1;
+                el.textContent = start.toString();
+                if (start >= end) clearInterval(timer);
+            }, stepTime);
+        });
+    }
 }

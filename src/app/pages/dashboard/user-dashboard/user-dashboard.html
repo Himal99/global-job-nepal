@@ -17,41 +17,71 @@
         <!-- HEADER CARD -->
         <!-- HEADER CARD -->
         <div class="card header-card">
+
+            <!-- HEADER -->
             <div class="header-card-inner">
                 <div class="header-text">
-                    <h1 class="professional-title shimmer">{{detail?.firstName}} {{detail?.lastName}}</h1>
-                    <br>
-                    <p class="profession shimmer">Software Engineer || Java</p>
-                    <p>{{detail?.address?.country}}, {{detail?.address?.city}}, {{detail?.phone}}, {{detail?.email}}</p>
+                    <h1 class="professional-title">{{detail?.firstName}} {{detail?.lastName}}</h1>
+                    <p class="profession">Software Engineer || Java</p>
+                    <p>{{detail?.address?.country}}, {{detail?.address?.city}} | {{detail?.phone}} | {{detail?.email}}</p>
+
+
+
                     <div class="actions">
                         <button class="btn btn-primary">Contact Info</button>
-                        <button style="color: #0A66C2" (click)="navigateToEditForm()" class="btn btn-secondary">Edit Profile</button>
-                        <button style="color: #0A66C2" (click)="navigateToCvForm()" class="btn btn-secondary">Generate CV</button>
+                        <button class="btn btn-secondary" (click)="navigateToEditForm()">Edit Profile</button>
+                        <button class="btn btn-secondary" (click)="navigateToCvForm()">Generate CV</button>
                     </div>
                 </div>
+
                 <div class="header-profile-pic">
                     <img src="https://i.pravatar.cc/300" alt="Profile">
                 </div>
             </div>
 
-            <!-- ANALYTICS SECTION (same as before) -->
-            <div class="analytics-section">
-                <div class="analytics-item">
-                    <i class="fas fa-eye analytics-icon"></i>
-                    <p class="analytics-label">Profile Views</p>
-                    <p class="analytics-value count-up" [innerText]="profileViews">0</p>
+            <!-- ANALYTICS SECTION -->
+
+
+            <!-- MINI INFO ROW -->
+            <div class="mini-info">
+
+                <div class="info-item">
+                    <i class="fas fa-language"></i>
+                    <p>English, Nepali</p>,
+                    <i class="fas fa-calendar-alt"></i>
+                    <p>Joined Jan 2020</p>
                 </div>
-                <div class="analytics-item">
-                    <i class="fas fa-briefcase analytics-icon"></i>
-                    <p class="analytics-label">Job Views</p>
-                    <p class="analytics-value count-up" [innerText]="jobViews">0</p>
-                </div>
-                <div class="analytics-item">
-                    <i class="fas fa-search analytics-icon"></i>
-                    <p class="analytics-label">Search Appearances</p>
-                    <p class="analytics-value count-up" [innerText]="searchAppearances">0</p>
+
+                <div class="info-item">
+
                 </div>
             </div>
+
+
+
+<!--            <div class="analytics-section" >-->
+<!--                <div class="analytics-item">-->
+<!--                    <i class="fas fa-eye analytics-icon"></i>-->
+<!--                    <p class="analytics-value count-up" [innerText]="profileViews">0</p>-->
+<!--                    <p class="analytics-label">Profile Views</p>-->
+<!--                </div>-->
+<!--                <div class="analytics-item">-->
+<!--                    <i class="fas fa-briefcase analytics-icon"></i>-->
+<!--                    <p class="analytics-value count-up" [innerText]="jobViews">0</p>-->
+<!--                    <p class="analytics-label">Job Views</p>-->
+<!--                </div>-->
+<!--                <div class="analytics-item">-->
+<!--                    <i class="fas fa-search analytics-icon"></i>-->
+<!--                    <p class="analytics-value count-up" [innerText]="searchAppearances">0</p>-->
+<!--                    <p class="analytics-label">Search Appearances</p>-->
+<!--                </div>-->
+<!--                <div class="analytics-item">-->
+<!--                    <i class="fas fa-star analytics-icon"></i>-->
+<!--                    <p class="analytics-value count-up">95%</p>-->
+<!--                    <p class="analytics-label">Profile Strength</p>-->
+<!--                </div>-->
+<!--            </div>-->
+
         </div>
 
 
