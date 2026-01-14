@@ -264,3 +264,180 @@ body { background-color: #F9FAFB; color: #1f2937; }
 .github    { background: #1f2937; }
 .twitter   { background: #1da1f2; }
 .portfolio { background: #2563eb; }
+.header-card {
+    border-radius: 12px;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+}
+
+.header-card:hover { transform: translateY(-3px); }
+
+.header-card-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-profile-pic img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #2563eb;
+    transition: transform 0.3s ease;
+}
+.header-profile-pic img:hover { transform: scale(1.05); }
+
+.actions button {
+    margin-right: 8px;
+    transition: all 0.3s ease;
+}
+.actions button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37,99,235,0.2);
+}
+
+/* Analytics */
+.analytics-section {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    border-top: 1px solid #e5e7eb;
+    padding-top: 16px;
+}
+.analytics-item {
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+.analytics-item:hover { transform: translateY(-4px); }
+
+.analytics-icon {
+    font-size: 24px;
+    color: #2563eb;
+    margin-bottom: 6px;
+    display: block;
+    animation: iconBounce 1.2s infinite alternate;
+}
+
+@keyframes iconBounce {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-5px); }
+}
+
+.analytics-label {
+    font-size: 12px;
+    color: #6b7280;
+    margin: 4px 0;
+}
+
+.analytics-value {
+    font-weight: bold;
+    font-size: 16px;
+    color: #111827;
+    transition: all 0.5s ease;
+}
+/* SHIMMER EFFECT */
+.shimmer {
+    display: inline-block;
+    position: relative;
+    color: #111827;
+    background: linear-gradient(
+            90deg,
+            #111827 0%,
+            #2563eb 50%,
+            #111827 100%
+    );
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmerAnimation 2.5s linear infinite;
+}
+
+@keyframes shimmerAnimation {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+/* PROFESSION STYLE */
+.profession {
+    font-size: 16px;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+/* Existing styles for header card */
+.header-card {
+    border-radius: 12px;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+}
+.header-card:hover { transform: translateY(-3px); }
+
+.header-card-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-profile-pic img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #2563eb;
+    transition: transform 0.3s ease;
+}
+.header-profile-pic img:hover { transform: scale(1.05); }
+
+.actions button {
+    margin-right: 8px;
+    transition: all 0.3s ease;
+}
+.actions button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37,99,235,0.2);
+}
+
+/* Analytics */
+.analytics-section {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    border-top: 1px solid #e5e7eb;
+    padding-top: 16px;
+}
+.analytics-item {
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+.analytics-item:hover { transform: translateY(-4px); }
+
+.analytics-icon {
+    font-size: 24px;
+    color: #2563eb;
+    margin-bottom: 6px;
+    display: block;
+    animation: iconBounce 1.2s infinite alternate;
+}
+
+@keyframes iconBounce {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-5px); }
+}
+
+.analytics-label {
+    font-size: 12px;
+    color: #6b7280;
+    margin: 4px 0;
+}
+
+.analytics-value {
+    font-weight: bold;
+    font-size: 16px;
+    color: #111827;
+    transition: all 0.5s ease;
+}

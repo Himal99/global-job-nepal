@@ -10,15 +10,25 @@
 
 
 
+
+<!-- Chatbot Hint -->
+<div class="bot-hint">
+    <div class="bot-avatar">🤖</div>
+    <div class="bot-message">
+        <strong>You’re almost there!</strong><br>
+        Add <b>skills</b> to reach <b>{{ nextTarget }}%</b> profile strength.
+    </div>
+</div>
+
+<!-- Profile Card -->
 <div class="card">
     <div class="header">
         <h2>Profile Strength</h2>
-        <span class="percentage">80% Complete</span>
+        <span class="percentage">{{ progress }}% Complete</span>
     </div>
 
-    <!-- Animated Progress -->
     <div class="progress-bar">
-        <div class="progress" style="width:80%"></div>
+        <div class="progress" [style.width.%]="progress"></div>
     </div>
 
     <p class="info">
@@ -27,9 +37,7 @@
 
     <!-- Completed -->
     <div class="suggestion completed">
-        <div class="icon done">
-            <i class="fas fa-check"></i>
-        </div>
+        <div class="icon done"><i class="fas fa-check"></i></div>
         <div class="suggestion-content">
             <p class="suggestion-title">Personal details added</p>
             <p class="suggestion-text">Basic profile information completed</p>
@@ -37,47 +45,30 @@
         <span class="status done-text">Done</span>
     </div>
 
-    <!-- Work Experience -->
+    <!-- Pending -->
     <div class="suggestion">
-        <div class="icon experience">
-            <i class="fas fa-briefcase"></i>
-        </div>
+        <div class="icon experience"><i class="fas fa-briefcase"></i></div>
         <div class="suggestion-content">
             <p class="suggestion-title">Add work experience</p>
             <p class="suggestion-text">Experience increases recruiter trust</p>
         </div>
-        <button class="action-btn">Update</button>
+        <button class="action-btn" (click)="addExperience()">Update</button>
     </div>
 
-    <!-- Profile Photo -->
-    <div class="suggestion">
-        <div class="icon photo">
-            <i class="fas fa-user-circle"></i>
-        </div>
-        <div class="suggestion-content">
-            <p class="suggestion-title">Upload profile photo</p>
-            <p class="suggestion-text">Profiles with photos get more views</p>
-        </div>
-        <button class="action-btn">Upload</button>
-    </div>
-
-    <!-- Skills -->
-    <div class="suggestion">
-        <div class="icon skills">
-            <i class="fas fa-lightbulb"></i>
-        </div>
+    <div class="suggestion pulse">
+        <div class="icon skills"><i class="fas fa-lightbulb"></i></div>
         <div class="suggestion-content">
             <p class="suggestion-title">Add skills</p>
             <p class="suggestion-text">Skills help match relevant jobs</p>
         </div>
-        <button class="action-btn">Add</button>
+        <button class="action-btn" (click)="addSkills()">Add</button>
     </div>
 
-    <button (click)="navigateToEditForm()"
-            class="main-btn btn-primary">
+    <button class="main-btn btn-primary" (click)="navigateToEditForm()">
         Complete Profile Now
     </button>
 </div>
+
 
 </body>
 </html>

@@ -17,4 +17,17 @@ export class ProfileStrengthComponent {
 
     this.router.navigate([`/profile-detail/${localStorage.getItem('email')}`])
   }
+
+  progress = 80;
+  nextTarget = 90;
+
+  addExperience() {
+    this.progress = Math.min(this.progress + 5, 100);
+  }
+
+  addSkills() {
+    this.progress = Math.min(this.progress + 10, 100);
+  }
+
+
 }

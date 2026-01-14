@@ -19,21 +19,14 @@
         <div class="card header-card">
             <div class="header-card-inner">
                 <div class="header-text">
-                    <h1 class="professional-title">{{detail?.firstName}} {{detail?.lastName}}</h1>
-                    <p>Software Engineer || Java</p>
-                    <p>{{detail?.address?.country}}, {{detail?.address?.city}}, {{detail?.phone}},
-                        {{detail?.email}}
-                    </p>
+                    <h1 class="professional-title shimmer">{{detail?.firstName}} {{detail?.lastName}}</h1>
+                    <br>
+                    <p class="profession shimmer">Software Engineer || Java</p>
+                    <p>{{detail?.address?.country}}, {{detail?.address?.city}}, {{detail?.phone}}, {{detail?.email}}</p>
                     <div class="actions">
-                        <div class="actions">
-    <!--                            <button class="btn btn-sm btn-primary">Connect</button>-->
-    <!--                            <button class="btn btn-secondary">Message</button>-->
-                            <button class="btn btn-primary">Contact Info</button>
-                            <button
-                                    style="color: #0A66C2"
-                                    (click)="navigateToEditForm()" class="btn btn-secondary">Edit Profile</button>
-                            <button  style="color: #0A66C2" (click)="navigateToCvForm()" class="btn btn-secondary">Generate CV</button>
-                        </div>
+                        <button class="btn btn-primary">Contact Info</button>
+                        <button style="color: #0A66C2" (click)="navigateToEditForm()" class="btn btn-secondary">Edit Profile</button>
+                        <button style="color: #0A66C2" (click)="navigateToCvForm()" class="btn btn-secondary">Generate CV</button>
                     </div>
                 </div>
                 <div class="header-profile-pic">
@@ -41,19 +34,22 @@
                 </div>
             </div>
 
-            <!-- ANALYTICS SECTION -->
-            <div style="display:flex; justify-content: space-around; margin-top:20px; border-top:1px solid #e5e7eb; padding-top:12px;">
-                <div style="text-align:center;">
-                    <p style="font-size:12px; color:#6b7280;">Profile Views</p>
-                    <p style="font-weight:bold; font-size:16px;">1,245</p>
+            <!-- ANALYTICS SECTION (same as before) -->
+            <div class="analytics-section">
+                <div class="analytics-item">
+                    <i class="fas fa-eye analytics-icon"></i>
+                    <p class="analytics-label">Profile Views</p>
+                    <p class="analytics-value count-up" [innerText]="profileViews">0</p>
                 </div>
-                <div style="text-align:center;">
-                    <p style="font-size:12px; color:#6b7280;">Job Views</p>
-                    <p style="font-weight:bold; font-size:16px;">532</p>
+                <div class="analytics-item">
+                    <i class="fas fa-briefcase analytics-icon"></i>
+                    <p class="analytics-label">Job Views</p>
+                    <p class="analytics-value count-up" [innerText]="jobViews">0</p>
                 </div>
-                <div style="text-align:center;">
-                    <p style="font-size:12px; color:#6b7280;">Search Appearances</p>
-                    <p style="font-weight:bold; font-size:16px;">87</p>
+                <div class="analytics-item">
+                    <i class="fas fa-search analytics-icon"></i>
+                    <p class="analytics-label">Search Appearances</p>
+                    <p class="analytics-value count-up" [innerText]="searchAppearances">0</p>
                 </div>
             </div>
         </div>

@@ -29,6 +29,9 @@ import {ProfileStrengthComponent} from "../../profile-strength/profile-strength.
     styleUrl: './user-dashboard.css'
 })
 export class UserDashboard implements OnInit {
+    profileViews = 1245;
+    jobViews = 532;
+    searchAppearances = 87;
     spin = false;
     about: any;
     skills = [
@@ -89,8 +92,23 @@ export class UserDashboard implements OnInit {
                 console.log(rs)
                 this.detail = rs?.data
             })
-    }
 
+        this.animateCount('profileViews', 0, this.profileViews, 1500);
+        this.animateCount('jobViews', 0, this.jobViews, 1500);
+        this.animateCount('searchAppearances', 0, this.searchAppearances, 1500);
+    }
+    animateCount(field: string, start: number, end: number, duration: number) {
+        let range = end - start;
+        let current = start;
+        let increment = end > start ? 1 : -1;
+        let stepTime = Math.abs(Math.floor(duration / range));
+        const timer = setInterval(() => {
+            current += increment;
+            // @ts-ignore
+            this[field] = current;
+            if (current === end) clearInterval(timer);
+        }, stepTime);
+    }
     navigateToEditForm() {
         this.router.navigate([`/profile-detail/${localStorage.getItem('email')}`])
     }

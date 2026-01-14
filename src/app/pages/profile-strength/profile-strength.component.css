@@ -267,3 +267,84 @@ body {
 .action-btn:hover {
     background: #d1d5db;
 }
+/* Chatbot hint */
+.bot-hint {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    background: #eef2ff;
+    padding: 12px;
+    border-radius: 14px;
+    margin-bottom: 14px;
+}
+
+.bot-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #2563eb;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bot-message {
+    font-size: 13px;
+    color: #1f2937;
+}
+
+/* Progress */
+.progress-bar {
+    height: 8px;
+    background: #e5e7eb;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 10px 0 14px;
+}
+.progress {
+    height: 100%;
+    background: linear-gradient(90deg, #2563eb, #4f46e5);
+    border-radius: 20px;
+    transition: width 0.6s ease;
+}
+
+/* Suggestions */
+.suggestion {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #f9fafb;
+    padding: 12px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+}
+.suggestion.completed { background: #ecfdf5; }
+
+.icon {
+    width: 36px; height: 36px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 14px;
+}
+.icon.experience { background: #2563eb; }
+.icon.skills { background: #16a34a; }
+.icon.done { background: #22c55e; }
+
+.suggestion-content { flex: 1; }
+.suggestion-title { font-weight: 600; font-size: 14px; margin: 0; }
+.suggestion-text { font-size: 12px; color: #6b7280; margin: 2px 0 0; }
+
+.action-btn {
+    background: #e5e7eb; border: none; padding: 6px 12px;
+    border-radius: 8px; font-size: 12px; cursor: pointer;
+}
+
+/* Pulse for important pending item */
+.pulse {
+    animation: pulseGlow 1.8s infinite;
+}
+@keyframes pulseGlow {
+    0% { box-shadow: 0 0 0 0 rgba(37,99,235,0.3); }
+    70% { box-shadow: 0 0 0 10px rgba(37,99,235,0); }
+    100% { box-shadow: 0 0 0 0 rgba(37,99,235,0); }
+}
