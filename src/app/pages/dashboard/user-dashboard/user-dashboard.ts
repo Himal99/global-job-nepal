@@ -2,13 +2,15 @@ import {Component, OnInit} from '@angular/core';
 import {LoaderComponent} from "../../../utils/loader/loader.component";
 import {Router} from "@angular/router";
 import {UserDetailService} from "../../user-detail/user-detail.service";
-import {DatePipe, NgForOf, NgIf} from "@angular/common";
+import {CommonModule, DatePipe, NgForOf, NgIf} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {ModalComponent} from "../../../shared/components/ui/modal/modal.component";
 import {CdkDragDrop, CdkDropList, DragDropModule, moveItemInArray} from '@angular/cdk/drag-drop';
 import {FooterComponent} from "../../../shared/layout/footer/footer.component";
 import {ProfileStrengthComponent} from "../../profile-strength/profile-strength.component";
-
+import {animate, query, stagger, state, style, transition, trigger} from "@angular/animations";
+import {UserDashboardSkeletonComponent} from "../../user-dashboard-skeleton/user-dashboard-skeleton.component";
+import {firstValueFrom} from "rxjs";
 
 @Component({
     selector: 'app-ecommerce',
@@ -23,12 +25,51 @@ import {ProfileStrengthComponent} from "../../profile-strength/profile-strength.
         NgIf,
         DragDropModule,
         FooterComponent,
-        ProfileStrengthComponent
+        ProfileStrengthComponent,
+        CommonModule,
+        UserDashboardSkeletonComponent
     ],
     templateUrl: './user-dashboard.html',
-    styleUrl: './user-dashboard.css'
+    styleUrl: './user-dashboard.css',
+    animations: [
+        // Fade in/out for modal
+
+        trigger('sequentialFade', [
+            transition(':enter', [
+                query(':self, h1, p, .actions button,.learning-card', [
+                    style({ opacity: 0, transform: 'translateY(-20px)' }),
+                    stagger(150, [
+                        animate('500ms cubic-bezier(0.68, -0.55, 0.27, 1.55)',
+                            style({ opacity: 1, transform: 'translateY(0)' }))
+                    ])
+                ])
+            ])
+        ]),
+        trigger('buttonHover', [
+            state('normal', style({ transform: 'scale(1)', boxShadow: '0 2px 6px rgba(0,0,0,0.1)' })),
+            state('hover', style({ transform: 'scale(1.05)', boxShadow: '0 4px 12px rgba(0,0,0,0.2)' })),
+            transition('normal <=> hover', animate('300ms ease-in-out'))
+        ]),
+        trigger('snakeAnimation', [
+            transition(':enter', []),
+            transition(':leave', []),
+            transition('* => *', [
+                query(':self', [
+                    style({ transform: 'translateY(0)', opacity: 0.3 }),
+                    stagger(100, [
+                        animate('600ms ease-in-out', style({ transform: 'translateY(-15px)', opacity: 1 })),
+                        animate('600ms ease-in-out', style({ transform: 'translateY(0)', opacity: 0.3 }))
+                    ])
+                ], { optional: true })
+            ])
+        ])
+
+
+    ]
 })
 export class UserDashboard implements OnInit {
+    blocks = Array(6).fill(0);
+    hoverState: string = 'normal';
     profileViews = 1245;
     jobViews = 532;
     searchAppearances = 87;
@@ -81,22 +122,34 @@ export class UserDashboard implements OnInit {
     userName: string | null = '';
     email: any;
 
-    ngOnInit(): void {
+     ngOnInit(): void {
 
 
         this.userName = localStorage.getItem('userName')
         this.email = localStorage.getItem('email')
 
-        this.detailService.getByEmail(this.email)
-            .subscribe(rs => {
-                console.log(rs)
-                this.detail = rs?.data
-            })
 
+        const minDelay = new Promise(resolve => setTimeout(resolve, 1000));
+
+        // Start API call
+        const apiCall = this.detailService.getByEmail(this.email).toPromise();
+
+        // Wait for BOTH to finish
+        Promise.all([apiCall, minDelay])
+            .then(([rs]) => {
+                if (rs) {
+                    this.detail = rs.data;
+                }
+            })
+            .catch(err => console.error(err))
+            .finally(() => {
+                this.spin = false; // hide skeleton
+            });
         this.animateCount('profileViews', 0, this.profileViews, 1500);
         this.animateCount('jobViews', 0, this.jobViews, 1500);
         this.animateCount('searchAppearances', 0, this.searchAppearances, 1500);
     }
+
     animateCount(field: string, start: number, end: number, duration: number) {
         let range = end - start;
         let current = start;
@@ -109,6 +162,7 @@ export class UserDashboard implements OnInit {
             if (current === end) clearInterval(timer);
         }, stepTime);
     }
+
     navigateToEditForm() {
         this.router.navigate([`/profile-detail/${localStorage.getItem('email')}`])
     }
@@ -123,7 +177,7 @@ export class UserDashboard implements OnInit {
 
     updateAboutSection() {
         this.spin = true;
-      const  body = {
+        const body = {
             data: this.about
         }
         this.detailService.updateDetailSection(body, this.email, 'ABOUT')
@@ -165,3 +219,4 @@ export class UserDashboard implements OnInit {
         });
     }
 }
+

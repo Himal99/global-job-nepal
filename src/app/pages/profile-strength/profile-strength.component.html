@@ -6,13 +6,13 @@
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 </head>
-<body>
+<body [@sequentialFade]>
 
 
 
 
 <!-- Chatbot Hint -->
-<div class="bot-hint">
+<div class="bot-hint" >
     <div class="bot-avatar">🤖</div>
     <div class="bot-message">
         <strong>You’re almost there!</strong><br>
@@ -64,7 +64,9 @@
         <button class="action-btn" (click)="addSkills()">Add</button>
     </div>
 
-    <button class="main-btn btn-primary" (click)="navigateToEditForm()">
+    <button  [@buttonHover]="hoverState"
+             (mouseenter)="hoverState='hover'"
+             (mouseleave)="hoverState='normal'" class="main-btn btn-primary" (click)="navigateToEditForm()">
         Complete Profile Now
     </button>
 </div>

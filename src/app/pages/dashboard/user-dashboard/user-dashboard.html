@@ -9,30 +9,54 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 </head>
 <body>
-
+<div *ngIf="!detail; else profileContent">
+    <app-user-dashboard-skeleton></app-user-dashboard-skeleton>
+</div>
+<ng-template #profileContent>
 <div class="container ">
 
     <!-- LEFT COLUMN -->
     <div>
+
+
         <!-- HEADER CARD -->
         <!-- HEADER CARD -->
         <div class="card header-card">
 
             <!-- HEADER -->
-            <div class="header-card-inner">
-                <div class="header-text">
+            <div class="header-card-inner" >
+                <div class="header-text" [@sequentialFade]>
                     <h1 class="professional-title">{{detail?.firstName}} {{detail?.lastName}}</h1>
                     <p class="profession">Software Engineer || Java</p>
                     <p>{{detail?.address?.country}}, {{detail?.address?.city}} | {{detail?.phone}} | {{detail?.email}}</p>
 
-
-
                     <div class="actions">
-                        <button class="btn btn-primary">Contact Info</button>
-                        <button class="btn btn-secondary" (click)="navigateToEditForm()">Edit Profile</button>
-                        <button class="btn btn-secondary" (click)="navigateToCvForm()">Generate CV</button>
+                        <button class="btn btn-primary"
+                                [@buttonHover]="hoverState"
+                                (mouseenter)="hoverState='hover'"
+                                (mouseleave)="hoverState='normal'">
+                            Contact Info
+                        </button>
+
+                        <button class="btn btn-secondary"
+                                [@buttonHover]="hoverState"
+                                (mouseenter)="hoverState='hover'"
+                                (mouseleave)="hoverState='normal'"
+                                (click)="navigateToEditForm()">
+                            Edit Profile
+                        </button>
+
+                        <button class="btn btn-secondary"
+                                [@buttonHover]="hoverState"
+                                (mouseenter)="hoverState='hover'"
+                                (mouseleave)="hoverState='normal'"
+                                (click)="navigateToCvForm()">
+                            Generate CV
+                        </button>
                     </div>
+
                 </div>
+
 
                 <div class="header-profile-pic">
                     <img src="https://i.pravatar.cc/300" alt="Profile">
@@ -43,7 +67,7 @@
 
 
             <!-- MINI INFO ROW -->
-            <div class="mini-info">
+            <div class="mini-info" [@sequentialFade]>
 
                 <div class="info-item">
                     <i class="fas fa-language"></i>
@@ -86,7 +110,7 @@
 
 
         <!-- ABOUT -->
-        <div class="card" style="margin-top:20px; padding:16px;">
+        <div class="card" style="margin-top:20px; padding:16px;" [@sequentialFade]>
             <!-- About -->
             <div style="display:flex; justify-content: space-between; align-items:center;">
                 <h6 class="section-title">About</h6>
@@ -100,9 +124,9 @@
             <hr style="margin:16px 0; border-color:#eee;">
             <h6>Top Skills</h6>
 
-            <div cdkDropList (cdkDropListDropped)="drop($event)" style="display:flex; flex-direction:column; gap:10px;">
+            <div cdkDropList [@sequentialFade] (cdkDropListDropped)="drop($event)" style="display:flex; flex-direction:column; gap:10px;">
 
-                <div *ngFor="let skill of skills; let i = index" cdkDrag
+                <div [@sequentialFade] *ngFor="let skill of skills; let i = index" cdkDrag
                      style="padding:12px; border:1px solid #eee; border-radius:10px; background:#fff; cursor:move;">
 
                     <div style="display:flex; justify-content:space-between; align-items:center;">
@@ -269,13 +293,13 @@
 <!--            </ul>-->
 <!--        </div>-->
         <app-profile-strength></app-profile-strength><!-- LEARNING HUB SIDEBAR -->
-        <div class="learning-hub-card">
+        <div class="learning-hub-card" [@sequentialFade]>
             <div class="learning-hub-header">
                 <h3 style="font-size: 18px;color: #1f2937;margin: 0">Learning Hub</h3>
                 <span>Boost your skills 🚀</span>
             </div>
 
-            <div class="learning-hub-grid">
+            <div class="learning-hub-grid" [@sequentialFade]    >
 
                 <!-- Loksewa Exam -->
                 <div  class="learning-card gray">
@@ -488,7 +512,7 @@
 </div>
 <app-loader [show]="false"></app-loader>
 <app-footer></app-footer>
-
+</ng-template>
 </body>
 </html>
 <app-modal
@@ -536,6 +560,7 @@ font-size: smaller; color: gray; padding-top: 25px">You can write about your yea
            </div>
 
     </div>
+
 
 
 </app-modal>

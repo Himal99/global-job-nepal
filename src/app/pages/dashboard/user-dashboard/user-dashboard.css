@@ -687,3 +687,94 @@ body { background-color: #F9FAFB; color: #1f2937; }
     margin-bottom: 10px;
     cursor: pointer;
 }
+.actions button {
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.actions button.btn-primary {
+    background-color: #007bff;
+    color: white;
+}
+
+.actions button.btn-secondary {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.actions button:hover {
+    transform: scale(1.05);          /* Slight grow */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);  /* Glow/shadow effect */
+}
+.snake-loader {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+}
+.snake-loader div {
+    width: 12px;
+    height: 12px;
+    background-color: #007bff;
+    border-radius: 3px;
+}
+
+/*.learning-hub-grid {*/
+/*    display: grid;*/
+/*    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));*/
+/*    gap: 20px;*/
+/*    padding: 20px;*/
+/*}*/
+
+.learning-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.learning-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Shimmer effect */
+.learning-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150px;
+    width: 100px;
+    height: 100%;
+    background: linear-gradient(
+            120deg,
+            rgba(255,255,255,0) 0%,
+            rgba(255,255,255,0.6) 50%,
+            rgba(255,255,255,0) 100%
+    );
+    transform: skewX(-20deg);
+    transition: all 0.5s ease;
+}
+
+.learning-card:hover::after {
+    left: 100%;
+    transition: all 0.8s ease;
+}
+
+/* Card colors */
+.gray { background-color: #f5f5f5; }
+.green { background-color: #d4edda; }
+.blue { background-color: #cce5ff; }
+
+h4 { margin-top: 10px; color: #090814; }
+p { margin-top: 5px; color: #333; }
