@@ -1,0 +1,49 @@
+.paper {
+    padding: 30px 60px;
+    font-family: "Times New Roman", serif;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid #000;
+    margin-bottom: 20px;
+}
+
+.section {
+    margin-top: 30px;
+    text-decoration: underline;
+}
+
+.question {
+    margin-bottom: 20px;
+}
+
+.np {
+    font-family: "Mangal","Noto Sans Devanagari",serif;
+}
+
+label {
+    display: block;
+    padding: 6px;
+    border: 1px solid #ccc;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.correct {
+    background: #dcfce7;
+}
+
+.wrong {
+    background: #fee2e2;
+}
+
+.submit-box {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.timer {
+    font-weight: bold;
+}

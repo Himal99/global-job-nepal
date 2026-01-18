@@ -1,0 +1,38 @@
+<div class="paper">
+
+    <div class="top-bar">
+        <h2>Loksewa MCQ Examination</h2>
+        <div class="timer">⏱ {{ timerText }}</div>
+    </div>
+
+    <div *ngFor="let sec of sections; let si = index">
+        <h3 class="section">{{ sec.name }}</h3>
+
+        <div class="question" *ngFor="let q of sec.questions; let qi = index">
+
+            <p><strong>Q:</strong> {{ q.en }}</p>
+            <p class="np">{{ q.np }}</p>
+
+            <label *ngFor="let opt of q.options; let oi = index"
+                   [class.correct]="submitted && oi === q.correct"
+                   [class.wrong]="submitted && q.selected === oi && oi !== q.correct">
+
+                <input type="radio"
+                       name="q{{si}}{{qi}}"
+                       (change)="select(si,qi,oi)"
+                       [checked]="q.selected === oi" />
+
+                {{ opt.en }} / {{ opt.np }}
+            </label>
+
+        </div>
+    </div>
+
+    <div class="submit-box">
+        <button (click)="submit()">Submit Exam</button>
+        <div *ngIf="submitted" class="result">
+            Score: {{ score }}
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,65 @@
+<div class="paper" [class.dark]="darkMode">
+
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <div class="timer">⏱ Time Left: {{ timerText }}</div>
+        <button (click)="toggleDark()">🌙 Toggle Dark</button>
+    </div>
+
+    <!-- HEADER -->
+    <div class="header">
+        <h1>Loksewa Prepare</h1>
+        <h3>Powered by JobSpring</h3>
+    </div>
+
+    <!-- INFO -->
+    <div class="exam-info">
+        <div><strong>Subject:</strong> General Knowledge</div>
+        <div><strong>Time:</strong> 2 Hours</div>
+        <div><strong>Full Marks:</strong> 100</div>
+    </div>
+
+    <!-- INSTRUCTIONS -->
+    <div class="instructions">
+        <ul>
+            <li>Attempt all questions</li>
+            <li>Answers are auto-saved</li>
+            <li>AI evaluation enabled</li>
+        </ul>
+    </div>
+
+    <!-- QUESTIONS -->
+    <div class="question" *ngFor="let q of questions; let i = index">
+        <h4>Question {{ i + 1 }} ({{ q.marks }} Marks)</h4>
+
+        <p class="question-en">
+
+            {{ q.en }}
+        </p>
+
+        <p class="question-np">
+
+            {{ q.np }}
+        </p>
+        <div class="about-editor">
+            <ckeditor
+                    [config]="editorConfig"
+                    [editor]="Editor"
+                    >
+            </ckeditor>
+        </div>
+
+
+
+
+        <div class="meta">
+            Words: {{ wordCounts[i] }} | 🤖 AI Ready
+        </div>
+    </div>
+
+
+    <div class="footer">
+        © 2026 JobSpring | Loksewa Digital Exam
+    </div>
+
+</div>

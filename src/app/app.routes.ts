@@ -32,6 +32,8 @@ import {Cv3Component} from "./pages/cv/cv3/cv3.component";
 import {CvGeneratorComponent} from "./pages/cv/cv-generator/cv-generator.component";
 import {MyFilesComponent} from "./pages/my-files/my-files.component";
 import {QuizComponent} from "./loksewa/quiz/quiz.component";
+import {LoksewaExamComponent} from "./loksewa/loksewa-exam/loksewa-exam.component";
+import {LoksewaMcqComponent} from "./loksewa/loksewa-mcq/loksewa-mcq.component";
 
 export const routes: Routes = [
   {
@@ -54,6 +56,22 @@ export const routes: Routes = [
         canActivate:[authGuard]
       },
       {
+        path: 'loksewa-exam',
+        component: LoksewaExamComponent,
+        pathMatch: 'full',
+        title:
+            'Udaan | Dashboard',
+        canActivate:[authGuard]
+      },
+      {
+        path: 'loksewa-mcq',
+        component: LoksewaMcqComponent,
+        pathMatch: 'full',
+        title:
+            'Udaan | Dashboard',
+        canActivate:[authGuard]
+      },
+      {
         path: 'quiz',
         component: QuizComponent,
         pathMatch: 'full',
@@ -61,6 +79,7 @@ export const routes: Routes = [
             'Udaan | Dashboard',
         canActivate:[authGuard]
       },
+
       {
         path: 'cv',
         component: CvComponent,
