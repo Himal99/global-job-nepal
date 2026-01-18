@@ -1,39 +1,39 @@
 import {Component, OnInit} from '@angular/core';
 import {LoksewaService} from "../service/loksewa.service";
-import {NgForOf} from "@angular/common";
+import {NgForOf, NgIf} from "@angular/common";
 import {LoaderComponent} from "../../utils/loader/loader.component";
 import {FormsModule} from "@angular/forms";
-import {ChatbotComponent} from "../../pages/chatbot/chatbot.component";
+
+import {finalize, tap} from "rxjs";
 
 @Component({
-  selector: 'app-loksewa-news',
+    selector: 'app-loksewa-news',
     imports: [
         NgForOf,
         LoaderComponent,
         FormsModule,
-        ChatbotComponent
+        NgIf
     ],
-  templateUrl: './loksewa-news.component.html',
-  styleUrl: './loksewa-news.component.css',
+    templateUrl: './loksewa-news.component.html',
+    styleUrl: './loksewa-news.component.css',
 })
-export class LoksewaNewsComponent implements OnInit{
-  data: any;
-  spin= false;
-  constructor(protected service: LoksewaService) {
-  }
-  searchText = '';
-  ngOnInit(): void {
+export class LoksewaNewsComponent implements OnInit {
+    data: any;
+    spin = false;
 
-    this.spin=true;
-    this.service
-        .getAllNotice()
-        .subscribe( rs => {
-          console.log(rs)
-          this.data = rs;
-          this.spin=false;
-        }, err=>{
-          this.spin=false;
-        })
-  }
+    constructor(protected service: LoksewaService) {
+    }
+
+    searchText = '';
+
+    ngOnInit(): void {
+
+        this.spin = true;
+        this.service
+            .getAllNotice().pipe(
+            tap(rs => this.data = rs),
+            finalize(() => this.spin = false)
+        ).subscribe();
+    }
 
 }

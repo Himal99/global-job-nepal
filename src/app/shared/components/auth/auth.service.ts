@@ -19,13 +19,13 @@ export class AuthService extends BaseService<any> {
   }
 
   public registerUser(body: object): Observable<any> {
-    const api = `http://localhost:8085/api/v1/auth/register`;
+    const api = `http://46.62.241.168:8085/api/v1/auth/register`;
 
     return this.http.post(api, body);
   }
 
   public login(body: object): Observable<any> {
-    const api = `http://localhost:8085/api/v1/auth/login`;
+    const api = `http://46.62.241.168:8085/api/v1/auth/login`;
 
     return this.http.post(api, body);
   }

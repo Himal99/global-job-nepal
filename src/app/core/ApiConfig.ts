@@ -1,6 +1,6 @@
 export class ApiConfig {
-  public static TOKEN = 'http://localhost:8086/oauth/token';
-  public static URL = 'http://localhost:8085';
+  public static TOKEN = 'http://46.62.241.168:8085/oauth/token';
+  public static URL = 'http://46.62.241.168:8085';
 
 
 }

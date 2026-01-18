@@ -24,7 +24,7 @@
             </ul>
         </div>
 
-        <div *ngIf="user.customFields?.length" class="cv-section">
+        <div *ngIf="user.customFields.length" class="cv-section">
             <h2><i class="fa-solid fa-info-circle"></i> Additional Info</h2>
             <div *ngFor="let field of user.customFields" class="custom-field">
                 <strong>{{ field.label }}:</strong> {{ field.value }}

@@ -1,15 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <title>Profile Completion Suggestions</title>
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-</head>
-<body [@sequentialFade]>
-
-
-
 
 <!-- Chatbot Hint -->
 <div class="bot-hint" >
@@ -21,7 +9,7 @@
 </div>
 
 <!-- Profile Card -->
-<div class="card">
+<div class="card" [@sequentialFade]>
     <div class="header">
         <h2>Profile Strength</h2>
         <span class="percentage">{{ progress }}% Complete</span>
@@ -70,7 +58,3 @@
         Complete Profile Now
     </button>
 </div>
-
-
-</body>
-</html>

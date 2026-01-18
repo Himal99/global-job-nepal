@@ -3,7 +3,7 @@
     <!-- LEFT COLUMN -->
     <div class="cv-left">
         <div class="profile-section">
-            <img *ngIf="user.profilePicture" [src]="user.profilePicture" alt="Profile Picture" class="profile-pic">
+            <img *ngIf="user.profilePicture" ngSrc="user.profilePicture" alt="Profile Picture" class="profile-pic">
             <h1>{{ user.name }}</h1>
             <p class="title">{{ user.title }}</p>
         </div>
@@ -15,7 +15,7 @@
             <p *ngIf="user.website"><i class="fa-solid fa-globe"></i> <a href="{{ user.website }}" target="_blank">{{ user.website }}</a></p>
         </div>
 
-        <div *ngIf="user.skills?.length" class="cv-section">
+        <div *ngIf="user.skills.length" class="cv-section">
             <h2><i class="fa-solid fa-lightbulb"></i> Skills</h2>
             <ul class="skills-list">
                 <li *ngFor="let skill of user.skills"><i class="fa-solid fa-check"></i> {{ skill }}</li>
