@@ -1,2 +1,15 @@
-<router-outlet></router-outlet>
-<app-chatbot></app-chatbot>
+
+
+
+<!-- Desktop-only overlay -->
+<div *ngIf="isMobile" class="mobile-blocker">
+    <div class="popup">
+        <h2>⚠ Desktop Only</h2>
+        <p>This application is only available for desktop devices.</p>
+        <p>Please open it on a laptop or desktop browser.</p>
+    </div>
+</div>
+
+<!-- Your actual app -->
+<router-outlet *ngIf="!isMobile"></router-outlet>
+<app-chatbot *ngIf="!isMobile"></app-chatbot>
