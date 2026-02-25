@@ -12,8 +12,7 @@ import { BarChartComponent } from './pages/charts/bar-chart/bar-chart.component'
 import { AlertsComponent } from './pages/ui-elements/alerts/alerts.component';
 import { AvatarElementComponent } from './pages/ui-elements/avatar-element/avatar-element.component';
 import { BadgesComponent } from './pages/ui-elements/badges/badges.component';
-import { ButtonsComponent } from './pages/ui-elements/buttons/buttons.component';
-import { ImagesComponent } from './pages/ui-elements/images/images.component';
+
 import { VideosComponent } from './pages/ui-elements/videos/videos.component';
 import { SignInComponent } from './pages/auth-pages/sign-in/sign-in.component';
 import { SignUpComponent } from './pages/auth-pages/sign-up/sign-up.component';
@@ -34,6 +33,7 @@ import {MyFilesComponent} from "./pages/my-files/my-files.component";
 import {QuizComponent} from "./loksewa/quiz/quiz.component";
 import {LoksewaExamComponent} from "./loksewa/loksewa-exam/loksewa-exam.component";
 import {LoksewaMcqComponent} from "./loksewa/loksewa-mcq/loksewa-mcq.component";
+import {BlogDashboardComponent} from "./my-blog/blog-dashboard/blog-dashboard.component";
 
 export const routes: Routes = [
   {
@@ -198,16 +198,12 @@ export const routes: Routes = [
         component:BadgesComponent,
         title:'Angular Badges Dashboard | TailAdmin - Angular Admin Dashboard Template'
       },
-      {
-        path:'buttons',
-        component:ButtonsComponent,
-        title:'Angular Buttons Dashboard | TailAdmin - Angular Admin Dashboard Template'
-      },
-      {
-        path:'images',
-        component:ImagesComponent,
-        title:'Angular Images Dashboard | TailAdmin - Angular Admin Dashboard Template'
-      },
+
+      // {
+      //   path:'images',
+      //   component:ImagesComponent,
+      //   title:'Angular Images Dashboard | TailAdmin - Angular Admin Dashboard Template'
+      // },
       {
         path:'videos',
         component:VideosComponent,
@@ -222,6 +218,11 @@ export const routes: Routes = [
         path:'profile-detail/:id',
         component:UserDetailComponent,
         title:'Udaan | User Profile'
+      },
+      {
+        path:'blog',
+        component:BlogDashboardComponent,
+        title:'Blog'
       },
     ]
   },

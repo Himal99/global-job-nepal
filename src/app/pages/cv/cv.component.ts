@@ -24,9 +24,9 @@ export class CvComponent {
 
 
     templates: CVTemplate[] = [
-        {id: 1, name: 'Modern Blue', previewImage: '/images/logo/cv1.png'},
-        {id: 2, name: 'Classic Grey', previewImage: '/images/logo/cv2.png'},
-        {id: 3, name: 'Minimal White', previewImage: '/images/logo/cv3.png '},
+        {id: 1, name: 'Modern Blue', previewImage: 'images/logo/cv1.png'},
+        {id: 2, name: 'Classic Grey', previewImage: 'images/logo/cv2.png'},
+        {id: 3, name: 'Minimal White', previewImage: 'images/logo/cv3.png '},
     ];
 
     selectedTemplate: number | null = null;
