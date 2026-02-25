@@ -19,13 +19,13 @@ export class AuthService extends BaseService<any> {
   }
 
   public registerUser(body: object): Observable<any> {
-    const api = `https://rotation-cheese-advertise-beverly.trycloudflare.com/api/v1/auth/register`;
+    const api = `https://caught-unlock-correlation-guest.trycloudflare.com/api/v1/auth/register`;
 
     return this.http.post(api, body);
   }
 
   public login(body: object): Observable<any> {
-    const api = `https://rotation-cheese-advertise-beverly.trycloudflare.com/api/v1/auth/login`;
+    const api = `https://caught-unlock-correlation-guest.trycloudflare.com/api/v1/auth/login`;
 
     return this.http.post(api, body);
   }
